@@ -16,6 +16,8 @@ public:
 	//If it's hit either side of the screen and/or other objects?
 	//Call collision class
 	void checkCollision();
+	void scale(int scaleFactor);
+	void rotate(float rotateAmount);
 
 private:
 
