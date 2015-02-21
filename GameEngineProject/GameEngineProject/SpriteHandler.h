@@ -14,7 +14,7 @@ public:
 	void displaySprite();
 	void moveSprite(int valueToMove);
 	//If it's hit either side of the screen and/or other objects?
-	//Call collision
+	//Call collision class
 	void checkCollision();
 
 private:
