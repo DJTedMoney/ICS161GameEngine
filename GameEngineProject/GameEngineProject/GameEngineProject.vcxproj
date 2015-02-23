@@ -86,6 +86,12 @@
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EventHandler.h" />
+    <ClInclude Include="UIHandler.h" />
+    <ClInclude Include="SoundHandler.h" />
+    <ClInclude Include="SpriteHandler.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
