@@ -87,6 +87,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="UIHandler.h" />
     <ClInclude Include="SoundHandler.h" />
