@@ -10,6 +10,9 @@
 #include <utility>
 #include <vector>
 
+#pragma message("TODO remove iostream")
+#include <iostream>
+
 template <typename PathNodeType, typename HeuristicType>
 class PathFinder
 {
@@ -52,10 +55,17 @@ auto PathFinder<PathNodeType, HeuristicType>::get_optimal_path(PathNode end_node
     // while path not found
     while(optimal_previous_nodes_.count(end_node) == 0)
     {
+        std::cout << "unexplored_nodes:" << std::endl;
+        for(auto& node : unexplored_nodes_)
+        {
+            std::cout << "    " << node << std::endl;
+        }
+
         if(unexplored_nodes_.empty())
         {
             return boost::none;
         }
+
         auto calc_f_cost = [this, end_node] (const PathNode& unexplored)
         {
             return g_costs_[unexplored] + heuristic_(unexplored, end_node);
@@ -70,20 +80,26 @@ auto PathFinder<PathNodeType, HeuristicType>::get_optimal_path(PathNode end_node
 
         unexplored_nodes_.erase(to_explore);
         explored_nodes_.insert(to_explore);
+        std::cout << "moves from " << to_explore << ":" << std::endl;
         for(auto& move : to_explore.get_moves())
         {
+            std::cout << "    (" << move.first << ", " << move.second << ")";
             if(explored_nodes_.count(move.second) != 0)
             {
+                std::cout << " -- already explored" << std::endl;
                 continue;
             }
+
             
             auto potential_g_cost = g_costs_[to_explore] + move.first;
             if(unexplored_nodes_.count(move.second) == 0 || potential_g_cost < g_costs_[move.second])
             {
+                std::cout << " -- added to unexplored";
                 optimal_previous_nodes_[move.second] = to_explore;
                 g_costs_[move.second] = potential_g_cost;
                 unexplored_nodes_.insert(move.second);
             }
+            std::cout << std::endl;
         }
     }
     return reconstruct_path_(end_node);
@@ -95,7 +111,7 @@ auto PathFinder<PathNodeType, HeuristicType>::reconstruct_path_(PathNode end_nod
     Path path;
     for(PathNode walk_node = end_node; walk_node != start_node_; walk_node = optimal_previous_nodes_.at(walk_node))
     {
-        path.push_back(end_node);
+        path.push_back(walk_node);
     }
     std::reverse(path.begin(), path.end());
     return path;

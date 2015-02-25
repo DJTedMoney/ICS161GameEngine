@@ -7,9 +7,17 @@ template <std::size_t width, std::size_t height>
 class ExampleMap
 {
 public:
+//    ExampleMap()
+//    {
+//        for(auto& row : walls_)
+//        {
+//            row.fill(false);
+//        }
+//    }
+
     bool is_open(int x, int y) const
     {
-        return x > 0 && y > 0 && x < width && y < height && !walls_[y][x];
+        return x >= 0 && y >= 0 && x < width && y < height && !walls_[y][x];
     }
 
     void set_wall(int x, int y, bool wall)
@@ -20,6 +28,21 @@ public:
 private:
     std::array<std::array<bool, width>, height> walls_{};
 };
+
+template< std::size_t width, std::size_t height>
+std::ostream& operator<<(std::ostream& out, const ExampleMap<width, height>& map)
+{
+    for(std::size_t y = 0; y != height; ++y)
+    {
+        for(std::size_t x = 0; x != width; ++x)
+        {
+            out << (map.is_open(x, y) ? '.' : '#') << std::endl;
+        }
+        out << std::endl;
+    }
+
+    return out;
+}
 
 template <typename MapType>
 class ExamplePathNode
@@ -96,6 +119,12 @@ struct hash<ExamplePathNode<Map>>
 }
 
 template <typename Map>
+std::ostream& operator<<(std::ostream& out, const ExamplePathNode<Map>& path_node)
+{
+    return out << "{" << path_node.get_x() << ", " << path_node.get_y() << "}";
+}
+
+template <typename Map>
 struct ExampleHeuristic
 {
     int operator()(const ExamplePathNode<Map>& lhs, const ExamplePathNode<Map>& rhs)
@@ -117,7 +146,7 @@ static std::ostream& print_path(std::ostream& out, const Path& path)
     else {
         for(auto& node : path.get())
         {
-            std::cout << " -> {" << node.get_x() << ", " << node.get_y() << "}";
+            std::cout << " -> " << node;
         }
     }
 
@@ -144,12 +173,12 @@ int main()
 
     PathFinder<ExamplePathNode<Map>, ExampleHeuristic<Map>> path_finder(ExamplePathNode<Map>(&map, 0, 0));
 
-    std::cout << "path to middle: ";
-    print_path(std::cout, path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 2, 2)));
-    std::cout << std::endl;
+//    std::cout << "path to middle: ";
+//    print_path(std::cout, path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 2, 2)));
+//    std::cout << std::endl;
 
     std::cout << "path to upper-right: ";
-    print_path(std::cout, path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 0, 3)));
+    print_path(std::cout, path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 3, 0)));
     std::cout << std::endl;
     //std::cout << "path to middle: " << path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 2, 2)) << std::endl;
     //std::cout << "path to upper-right: " << path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 0, 3)) << std::endl;
