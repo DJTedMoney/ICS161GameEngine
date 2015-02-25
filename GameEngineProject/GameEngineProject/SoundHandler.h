@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+//include SDL2_mixer
 
 class SoundHandler 
 {
@@ -10,11 +11,14 @@ public:
 	SoundHandler();
 	~SoundHandler();
 
+	void loadSound(std::string music);
 	void playSound(std::string toPlay);
-	void setVolume(int volumeLevel);
-	void setLoop(bool loop);
+	void stopSound(std::string toPlay);
+	void stopAllSound();
+	void setVolume(int volumeLevel, std::string toPlay);
+	void setLoop(bool loop, std::string toPlay);
 
 private:
-
+	//Vector or Map to store sound
 
 };
