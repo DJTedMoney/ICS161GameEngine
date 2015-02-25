@@ -86,12 +86,14 @@
   <ItemGroup>
     <ClCompile Include="GameEvent.cpp" />
     <ClCompile Include="GameEventHandler.cpp" />
+    <ClCompile Include="SaveHandlercpp.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameEvent.h" />
+    <ClInclude Include="SaveHandler.h" />
     <ClInclude Include="UIHandler.h" />
     <ClInclude Include="SoundHandler.h" />
     <ClInclude Include="SpriteHandler.h" />
