@@ -48,7 +48,7 @@ std::string getResourcePath(const std::string &subDir = ""){
 		if (pos == std::string::npos) // no "Debug", assume "Release"
 			pos = baseRes.rfind("Release");
 		size_t prevSlash = baseRes.rfind(PATH_SEP, pos - 2); // find slash before project name
-			baseRes = baseRes.substr(0, prevSlash) + PATH_SEP + "res" +	PATH_SEP;
+			baseRes = baseRes.substr(0, prevSlash) + PATH_SEP + "Resources" +	PATH_SEP;
 
 	}
 	//If we want a specific subdirectory path in the resource directory
