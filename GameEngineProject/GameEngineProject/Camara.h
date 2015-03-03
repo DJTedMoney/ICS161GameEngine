@@ -1,5 +1,6 @@
 #pragma once
-
+#include <SDL_image.h>
+#include <iostream>
 class Camara
 {
 public: 
@@ -8,10 +9,15 @@ public:
 	~Camara();
 
 	void update();
-	void render();
+	void draw();
+	//add parameters to allow for diffrent screen sizes ect
+	void init(int width, int height);
 
+	SDL_Window* window;
+
+	const int SCREEN_WIDTH = 640;
+	const int SCREEN_HEIGHT = 480;
 
 private:
-
 
 };

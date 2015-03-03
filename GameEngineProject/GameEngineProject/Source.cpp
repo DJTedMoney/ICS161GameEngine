@@ -7,13 +7,15 @@
 #include <SDL_ttf.h>
 #include "SoundHandler.h"
 #include "SaveHandler.h"
-
+#include "Camara.h"
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
 
 
-int main(int, char**){
+int main(int, char**)
+{
+	Camara mainCamara;
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0){
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		return 1;
@@ -25,14 +27,9 @@ int main(int, char**){
 		return 1;
 	}
 
-	SDL_Window *window = SDL_CreateWindow("GameEngineProject", 800, 100, SCREEN_WIDTH,
-		SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-	if (window == nullptr){
-		std::cout << "CreateWindow Error: " << SDL_GetError() << std::endl;
-		SDL_Quit();
-		return 1;
-	}
-	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1,
+	mainCamara.init();
+
+	SDL_Renderer *renderer = SDL_CreateRenderer(mainCamara.window, -1,
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == nullptr){
 		std::cout << "Renderer Error: " << SDL_GetError() << std::endl;
@@ -51,7 +48,7 @@ int main(int, char**){
 	const std::string resPath = getResourcePath("Images");
 	SDL_Texture *background = SaveHandler::getInstance()->loadTexture(resPath + "background.png", renderer);
 	if (background == nullptr){
-		cleanup(background, renderer, window);
+		cleanup(background, renderer, mainCamara.window);
 		IMG_Quit();
 		SDL_Quit();
 		return 1;
@@ -94,7 +91,7 @@ int main(int, char**){
 		SDL_RenderPresent(renderer);
 	}
 
-	cleanup(background, renderer, window);
+	cleanup(background, renderer, mainCamara.window);
 	soundHandler->freeMusic();
 	Mix_Quit();
 	IMG_Quit();
