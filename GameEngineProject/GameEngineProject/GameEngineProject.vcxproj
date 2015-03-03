@@ -84,6 +84,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="GameEvent.cpp" />
     <ClCompile Include="GameEventHandler.cpp" />
     <ClCompile Include="SaveHandlercpp.cpp" />
