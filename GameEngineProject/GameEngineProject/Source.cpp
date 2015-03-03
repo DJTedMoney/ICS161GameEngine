@@ -27,7 +27,7 @@ int main(int, char**)
 		return 1;
 	}
 
-	mainCamara.init();
+	mainCamara.init(5500, 444);
 
 	SDL_Renderer *renderer = SDL_CreateRenderer(mainCamara.window, -1,
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
