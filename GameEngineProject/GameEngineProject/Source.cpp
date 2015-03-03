@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <cleanup.h>
 #include <res_path.h>
@@ -5,17 +6,12 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include "SoundHandler.h"
+#include "SaveHandler.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-SDL_Texture* loadTexture(const std::string &file, SDL_Renderer *ren){
-	SDL_Texture *texture = IMG_LoadTexture(ren, file.c_str());
-	if (texture == nullptr){
-		std::cout << "LoadTexture Error: " << SDL_GetError() << std::endl;
-	}
-	return texture;
-}
+
 
 int main(int, char**){
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0){
@@ -53,7 +49,7 @@ int main(int, char**){
 	}
 
 	const std::string resPath = getResourcePath("Images");
-	SDL_Texture *background = loadTexture(resPath + "background.png", renderer);
+	SDL_Texture *background = SaveHandler::getInstance()->loadTexture(resPath + "background.png", renderer);
 	if (background == nullptr){
 		cleanup(background, renderer, window);
 		IMG_Quit();

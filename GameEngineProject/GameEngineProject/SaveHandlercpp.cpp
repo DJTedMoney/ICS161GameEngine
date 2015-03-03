@@ -40,6 +40,17 @@ bool SaveHandler::open(std::string pathToFile)
 	return true;
 }
 
+SDL_Texture* SaveHandler::loadTexture(const std::string &file, SDL_Renderer *ren)
+{
+	SDL_Texture *texture = IMG_LoadTexture(ren, file.c_str());
+
+	if (texture == nullptr)
+	{
+		std::cout << "LoadTexture Error: " << SDL_GetError() << std::endl;
+	}
+
+	return texture;
+}
 
 bool SaveHandler::load()
 {
@@ -64,10 +75,12 @@ bool SaveHandler::write(std::string toWrite)
 	{
 		size_t len = SDL_strlen(toWrite.c_str());
 
-		if (SDL_RWwrite(file, toWrite.c_str(), 1, len) != len) {
+		if (SDL_RWwrite(file, toWrite.c_str(), 1, len) != len)
+		{
 			std::cout << "Could not write string!" << std::endl;
 		}
-		else {
+		else 
+		{
 			//printf("Wrote %d 1-byte blocks\n", len);
 		}
 		SDL_RWclose(file);
