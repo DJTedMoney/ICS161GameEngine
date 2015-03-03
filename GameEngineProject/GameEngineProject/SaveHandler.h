@@ -1,7 +1,9 @@
 #pragma once
 #include <string>
 #include <queue>
-
+#include "SDL_error.h"
+#include "SDL_rwops.h"
+#include <iostream>
 
 class SaveHandler
 {
@@ -28,6 +30,7 @@ public:
 
 	int gData[10];
 	std::string path;
+	SDL_RWops* file;
 
 private:	
 	 //Singleton class to avoid writing to same file multiple times.

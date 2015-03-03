@@ -1,7 +1,5 @@
 #include "SaveHandler.h"
-#include "SDL_error.h"
-#include "SDL_rwops.h"
-#include <iostream>
+
 
 SaveHandler* SaveHandler::instance;
 
@@ -17,7 +15,7 @@ SaveHandler* SaveHandler::getInstance()
 //Checks to see if the file can be opened.
 bool SaveHandler::open(std::string pathToFile)
 {
-	SDL_RWops* file = SDL_RWFromFile(test.c_str(), "r+");
+	file = SDL_RWFromFile(test.c_str(), "r+");
 
 	if (file == NULL)
 		std::cout << "Warning: Unable to open file! SDL Error: " << SDL_GetError() << std::endl;
@@ -60,7 +58,7 @@ bool SaveHandler::delte()
 //Writes string to a file. Doesn't take spaces yet. 
 bool SaveHandler::write(std::string toWrite)
 {
-	SDL_RWops *file = SDL_RWFromFile(test.c_str(), "w");
+	file = SDL_RWFromFile(test.c_str(), "w");
 
 	if (file != NULL) 
 	{
