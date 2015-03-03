@@ -2,12 +2,19 @@
 #include <string>
 #include <queue>
 #include "GameEvent.h"
+#include "SDL_events.h"
+
+
+
+//needs:
+	//a way for game functions to be able to listen for events
+	//a way to notify the game functions of an event that happened
+
 
 class GameEventHandler
 {
 
 public:
-	//Might need to have a string as a parameter to know where to look to load sounds
 	GameEventHandler();
 	~GameEventHandler();
 
@@ -15,15 +22,12 @@ public:
 	void PushEvent(GameEvent e);
 
 
-	//listen for events
-
-
 	//get next event
-	GameEvent GetNextEvent();
+	int GetNextEvent(GameEvent &ge);
 
 
 private:
 
 	std::queue<GameEvent>  gameEventQueue;
-
+	void Pop_Event();
 };
