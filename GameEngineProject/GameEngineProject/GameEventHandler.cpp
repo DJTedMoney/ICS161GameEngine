@@ -9,6 +9,10 @@ void GameEventHandler::PushEvent(GameEvent e){
 	gameEventQueue.push(e);
 }
 
+void GameEventHandler::Update(){
+	Pop_Event();
+}
+
 int GameEventHandler::GetNextEvent(GameEvent &ge){
 	if (gameEventQueue.empty()){
 		return 0;
