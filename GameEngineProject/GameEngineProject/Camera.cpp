@@ -1,16 +1,16 @@
-#include "Camara.h"
+#include "Camera"
 
-Camara::Camara()
+Camera::Camera()
 {
 
 }
 
-Camara::~Camara()
+Camera::~Camera()
 {
 
 }
 
-void Camara::init(int width, int height)
+void Camera::init(int width, int height)
 {
 	window = SDL_CreateWindow("GameEngineProject", 800, 100, SCREEN_WIDTH,
 		SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
@@ -23,12 +23,12 @@ void Camara::init(int width, int height)
 
 }
 
-void Camara::update()
+void Camera::update()
 {
-	//If some event calls for it change camara position or other actions
+	//If some event calls for it change Camera position or other actions
 }
 
-void Camara::draw()
+void Camera::draw()
 {
 	//Render here
 }

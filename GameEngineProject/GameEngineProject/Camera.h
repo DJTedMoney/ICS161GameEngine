@@ -1,12 +1,12 @@
 #pragma once
 #include <SDL_image.h>
 #include <iostream>
-class Camara
+class Camera
 {
 public: 
 
-	Camara();
-	~Camara();
+	Camera();
+	~Camera();
 
 	void update();
 	void draw();

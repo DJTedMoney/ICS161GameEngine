@@ -12,7 +12,6 @@ public:
 	Game();
 	~Game();
 
-	void init();
 	void update();
 	void draw();
 

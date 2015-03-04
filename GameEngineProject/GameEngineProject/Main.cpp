@@ -8,10 +8,6 @@
 #include "SoundHandler.h"
 #include "SaveHandler.h"
 #include "Camara.h"
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-
-
 
 int main(int, char**)
 {
