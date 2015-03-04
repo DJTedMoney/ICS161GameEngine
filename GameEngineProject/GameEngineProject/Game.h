@@ -1,6 +1,6 @@
 #pragma once
 #include "Actor.h"
-#include "Camara.h"
+#include "Camera.h"
 #include "GameEvent.h"
 #include "SaveHandler.h"
 #include "SoundHandler.h"
@@ -15,6 +15,7 @@ public:
 	void update();
 	void draw();
 
+	//GameEvent events;
 	bool gameIsRunning;
 	
 private:

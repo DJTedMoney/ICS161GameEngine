@@ -2,6 +2,7 @@
 #include <string>
 #include <queue>
 #include "GameEvent.h"
+#include <thread> 
 //#include "SDL_events.h"
 
 
@@ -26,12 +27,13 @@ public:
 
 	//get next event
 	int GetNextEvent(GameEvent &ge);
-
+	void init();
 	void Update();
 
 
 private:
 
+	std::thread eventThread;
 	std::queue<GameEvent>  gameEventQueue;
 	void Pop_Event();
 };
