@@ -4,6 +4,7 @@ Game::Game()
 {
 	gameIsRunning = true;
 	SaveHandler::getInstance()->init();
+	events.init();
 }
 
 Game::~Game()

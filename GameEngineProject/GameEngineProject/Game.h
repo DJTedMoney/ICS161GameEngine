@@ -4,6 +4,7 @@
 #include "GameEvent.h"
 #include "SaveHandler.h"
 #include "SoundHandler.h"
+#include "GameEventHandler.h"
 
 class Game
 {
@@ -15,7 +16,7 @@ public:
 	void update();
 	void draw();
 
-	//GameEvent events;
+	GameEventHandler events;
 	bool gameIsRunning;
 	
 private:
