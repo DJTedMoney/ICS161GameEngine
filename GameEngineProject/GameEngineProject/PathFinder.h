@@ -55,12 +55,6 @@ auto PathFinder<PathNodeType, HeuristicType>::get_optimal_path(PathNode end_node
     // while path not found
     while(optimal_previous_nodes_.count(end_node) == 0)
     {
-        std::cout << "unexplored_nodes:" << std::endl;
-        for(auto& node : unexplored_nodes_)
-        {
-            std::cout << "    " << node << std::endl;
-        }
-
         if(unexplored_nodes_.empty())
         {
             return boost::none;
@@ -80,13 +74,10 @@ auto PathFinder<PathNodeType, HeuristicType>::get_optimal_path(PathNode end_node
 
         unexplored_nodes_.erase(to_explore);
         explored_nodes_.insert(to_explore);
-        std::cout << "moves from " << to_explore << ":" << std::endl;
         for(auto& move : to_explore.get_moves())
         {
-            std::cout << "    (" << move.first << ", " << move.second << ")";
             if(explored_nodes_.count(move.second) != 0)
             {
-                std::cout << " -- already explored" << std::endl;
                 continue;
             }
 
@@ -94,12 +85,10 @@ auto PathFinder<PathNodeType, HeuristicType>::get_optimal_path(PathNode end_node
             auto potential_g_cost = g_costs_[to_explore] + move.first;
             if(unexplored_nodes_.count(move.second) == 0 || potential_g_cost < g_costs_[move.second])
             {
-                std::cout << " -- added to unexplored";
                 optimal_previous_nodes_[move.second] = to_explore;
                 g_costs_[move.second] = potential_g_cost;
                 unexplored_nodes_.insert(move.second);
             }
-            std::cout << std::endl;
         }
     }
     return reconstruct_path_(end_node);

@@ -173,9 +173,9 @@ int main()
 
     PathFinder<ExamplePathNode<Map>, ExampleHeuristic<Map>> path_finder(ExamplePathNode<Map>(&map, 0, 0));
 
-//    std::cout << "path to middle: ";
-//    print_path(std::cout, path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 2, 2)));
-//    std::cout << std::endl;
+    std::cout << "path to middle: ";
+    print_path(std::cout, path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 2, 2)));
+    std::cout << std::endl;
 
     std::cout << "path to upper-right: ";
     print_path(std::cout, path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 3, 0)));
