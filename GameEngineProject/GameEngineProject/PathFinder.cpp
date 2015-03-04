@@ -1,3 +1,9 @@
+/*
+    This file is just a demo of PathFinder, so it's commented out for now
+*/
+
+#if 0
+
 #include "PathFinder.h"
 
 #include <cstdlib>
@@ -183,3 +189,5 @@ int main()
     //std::cout << "path to middle: " << path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 2, 2)) << std::endl;
     //std::cout << "path to upper-right: " << path_finder.get_optimal_path(ExamplePathNode<Map>(&map, 0, 3)) << std::endl;
 }
+
+#endif
