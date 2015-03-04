@@ -10,9 +10,6 @@
 #include <utility>
 #include <vector>
 
-#pragma message("TODO remove iostream")
-#include <iostream>
-
 template <typename PathNodeType, typename HeuristicType>
 class PathFinder
 {
