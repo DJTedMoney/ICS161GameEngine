@@ -53,6 +53,7 @@ int main(int, char**)
 	std::string musResPath = getResourcePath("Music");
 	SoundHandler* soundHandler = new SoundHandler(musResPath);
 	soundHandler->loadSound("scratch.wav", "SFX");
+	soundHandler->loadSound("Sample.wav", "MUSIC");
 
 
 	SDL_Event e;
@@ -65,19 +66,23 @@ int main(int, char**)
 			if (e.type == SDL_KEYDOWN){
 				if (e.key.keysym.sym == SDLK_RIGHT)
 				{
-					soundHandler->playSound("scratch.wav");
+					//Play sound effect
+					soundHandler->playSound("scratch.wav", "SFX");
 				}
 				else if (e.key.keysym.sym == SDLK_LEFT)
 				{
-
+					//Play background music
+					soundHandler->playSound("Sample.wav", "MUSIC");
 				}
 				else if (e.key.keysym.sym == SDLK_UP)
 				{
-
+					//pause music
+					soundHandler->pauseSound();
 				}
 				else if (e.key.keysym.sym == SDLK_DOWN)
 				{
-
+					//resume music
+					soundHandler->resumeSound();
 				}
 			}
 		}

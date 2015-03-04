@@ -14,12 +14,15 @@ public:
 
 
 	void loadSound(std::string fileName, std::string type);
-	void playSound(std::string toPlay);
-	//void stopSound(std::string toPlay);
-	//void stopAllSound();
+	void playSound(std::string toPlay, std::string type);
+	void pauseSound();
+	void resumeSound();
+	void stopAllSound();
 	//void setVolume(int volumeLevel, std::string toPlay);
 	//void setLoop(bool loop, std::string toPlay);
 	void freeMusic();
+	const std::string MUSIC = "MUSIC";
+	const std::string SFX = "SFX";
 	
 
 private:
@@ -29,10 +32,11 @@ private:
 	char MUS_FILE_PATH;
 	std::vector<int> replace;
 
-	Mix_Chunk *sound = NULL;
+	Mix_Chunk *sfxSound = NULL;
+	Mix_Music *musicSound = NULL;
 
-	//std::map<std::string, Mix_Chunk> sfxList;
-	//std::map<std::string, Mix_Music> musicList;
+	std::map<std::string, Mix_Chunk*> sfxList;
+	std::map<std::string, Mix_Music*> musicList;
 	
 
 };
