@@ -3,8 +3,6 @@
 
 SaveHandler* SaveHandler::instance;
 
-
-
 SaveHandler* SaveHandler::getInstance()
 {
 	if (!instance)
@@ -50,6 +48,11 @@ SDL_Texture* SaveHandler::loadTexture(const std::string &file, SDL_Renderer *ren
 	}
 
 	return texture;
+}
+
+bool SaveHandler::init()
+{
+	return true;
 }
 
 bool SaveHandler::load()

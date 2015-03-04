@@ -23,6 +23,7 @@ public:
 	bool save();
 	bool load();
 
+	bool init();
 	bool write(std::string toWrite);
 	bool delte();
 	bool open(std::string path);
