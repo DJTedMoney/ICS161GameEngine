@@ -7,11 +7,11 @@
 #include <SDL_ttf.h>
 #include "SoundHandler.h"
 #include "SaveHandler.h"
-#include "Camara.h"
+#include "Camera.h"
 
 int main(int, char**)
 {
-	Camara mainCamara;
+	Camera mainCamera;
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0){
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		return 1;
@@ -23,9 +23,9 @@ int main(int, char**)
 		return 1;
 	}
 
-	mainCamara.init(5500, 444);
+	mainCamera.init(5500, 444);
 
-	SDL_Renderer *renderer = SDL_CreateRenderer(mainCamara.window, -1,
+	SDL_Renderer *renderer = SDL_CreateRenderer(mainCamera.window, -1,
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == nullptr){
 		std::cout << "Renderer Error: " << SDL_GetError() << std::endl;
@@ -44,7 +44,7 @@ int main(int, char**)
 	const std::string resPath = getResourcePath("Images");
 	SDL_Texture *background = SaveHandler::getInstance()->loadTexture(resPath + "background.png", renderer);
 	if (background == nullptr){
-		cleanup(background, renderer, mainCamara.window);
+		cleanup(background, renderer, mainCamera.window);
 		IMG_Quit();
 		SDL_Quit();
 		return 1;
@@ -87,7 +87,7 @@ int main(int, char**)
 		SDL_RenderPresent(renderer);
 	}
 
-	cleanup(background, renderer, mainCamara.window);
+	cleanup(background, renderer, mainCamera.window);
 	soundHandler->freeMusic();
 	Mix_Quit();
 	IMG_Quit();
