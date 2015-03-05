@@ -8,6 +8,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+
+
 class SaveHandler
 {
 
@@ -27,7 +29,6 @@ public:
 	bool write(std::string toWrite);
 	bool delte();
 	bool open(std::string path);
-	SDL_Texture* loadTexture(const std::string &file, SDL_Renderer *ren);
 	void close();
 
 	bool errorExists;
