@@ -10,6 +10,21 @@ void Actor::setSprite(SpriteHandler* new_sprite) {
 	sprite = new_sprite;
 }
 
+void Actor::showSprite()
+{
+
+}
+
+void Actor::makeFrame()
+{
+
+}
+
+void Actor::addFrameToSequence()
+{
+
+}
+
 void Actor::moveAbsolute(int new_x, int new_y) {
 	x = new_x;
 	y = new_y;

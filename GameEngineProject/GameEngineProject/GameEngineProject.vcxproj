@@ -100,6 +100,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameEvent.h" />
+    <ClInclude Include="res_path.h" />
     <ClInclude Include="SaveHandler.h" />
     <ClInclude Include="UIHandler.h" />
     <ClInclude Include="SoundHandler.h" />

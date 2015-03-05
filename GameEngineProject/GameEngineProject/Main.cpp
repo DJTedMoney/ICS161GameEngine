@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cleanup.h>
-#include <res_path.h>
+#include "res_path.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
