@@ -17,6 +17,17 @@ int main(int, char**)
 		return 1;
 	}
 
+	//Initializes MP3 loading
+	int mp3flag = MIX_INIT_MP3;
+	int initted = Mix_Init(mp3flag);
+
+	if (initted && mp3flag != mp3flag)
+	{
+		std::cout << "MP3 INITIALIZING ERROR" << SDL_GetError() << std::endl;
+		return 1;
+	}
+
+
 	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG){
 		std::cout << "IMG_Init Error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
@@ -54,6 +65,7 @@ int main(int, char**)
 	SoundHandler* soundHandler = new SoundHandler(musResPath);
 	soundHandler->loadSound("scratch.wav", "SFX");
 	soundHandler->loadSound("Sample.wav", "MUSIC");
+	soundHandler->loadSound("G Slamdam.mp3", "MUSIC");
 
 
 	SDL_Event e;
@@ -72,7 +84,7 @@ int main(int, char**)
 				else if (e.key.keysym.sym == SDLK_LEFT)
 				{
 					//Play background music
-					soundHandler->playSound("Sample.wav", "MUSIC");
+					soundHandler->playSound("G Slamdam.mp3", "MUSIC");
 				}
 				else if (e.key.keysym.sym == SDLK_UP)
 				{
