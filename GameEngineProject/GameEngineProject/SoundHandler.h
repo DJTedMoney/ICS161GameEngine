@@ -18,8 +18,6 @@ public:
 	void pauseSound();
 	void resumeSound();
 	void stopAllSound();
-	//void setVolume(int volumeLevel, std::string toPlay);
-	//void setLoop(bool loop, std::string toPlay);
 	void freeMusic();
 	const std::string MUSIC = "MUSIC";
 	const std::string SFX = "SFX";

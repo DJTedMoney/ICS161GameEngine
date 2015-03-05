@@ -66,7 +66,6 @@ void SoundHandler::loadSound(std::string fileName, std::string type)
 
 void SoundHandler::playSound(std::string toPlay, std::string type)
 {
-	//Mix_PlayChannel(-1, sound, 0);
 
 	if (type == "SFX")
 	{
