@@ -10,10 +10,6 @@ public:
 
 	// Sprite
 	void setSprite(SpriteHandler* new_sprite);
-	void showSprite();
-	void makeFrame();
-	void addFrameToSequence();
-
 
 	// Positioning
 	void moveAbsolute(int new_x, int new_y);
