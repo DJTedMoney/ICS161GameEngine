@@ -92,6 +92,7 @@
     <ClCompile Include="SaveHandlercpp.cpp" />
     <ClCompile Include="SoundHandler.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SpriteHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
