@@ -9,19 +9,19 @@ class Sprite
 {
 public:
 	Sprite(int width, int height, SDL_Renderer* ren);
+	//hitbox
 	SDL_Rect mColliders;
 	//new constructor with a rotation degree parameter
 	~Sprite(void);
 
 	void setPos(int x, int y);
-	void movex(int delta);
-	void movey(int delta);
+	void movex(int delta, const int Screen_width, SDL_Rect& rect);
+	void movey(int delta, const int Screen_height, SDL_Rect& rect);
 	int getX();
 	int getY();
 	int getWidth();
 	int getHeight();
-	void Sprite::setColPos(int x, int y);
-	bool Sprite::checkCollision(SDL_Rect& a, SDL_Rect& b);
+	bool checkCollision(SDL_Rect& a, SDL_Rect& b);
 
 
 

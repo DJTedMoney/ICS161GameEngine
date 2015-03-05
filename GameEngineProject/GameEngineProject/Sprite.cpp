@@ -3,24 +3,20 @@
 Sprite::Sprite(int width, int height, SDL_Renderer* ren) : width{ width }, height{ height }, renderer{ ren }{
 
 
-
+	//initializes hitbox
 	mColliders.w = width;
 	mColliders.h = height;
 
 
 }
-
-
-
 void Sprite ::  setPos(int x, int y){
 	this->currX = x;
 	this-> currY = y;
+	//puts hitbox under sprite
+	this->mColliders.x = x;
+	this->mColliders.y = y;
 }
 
-void Sprite::setColPos(int x, int y){
-	this -> mColliders.x = x;
-	this -> mColliders.y = y;
-}
 bool Sprite::checkCollision(SDL_Rect& a, SDL_Rect& b)
 {
 		//The sides of the rectangles
@@ -67,19 +63,30 @@ bool Sprite::checkCollision(SDL_Rect& a, SDL_Rect& b)
 }
 
 
-
-void Sprite::movex(int delta){
-	currX += delta;
+void Sprite::movey(int delta, const int Screen_height, SDL_Rect& rect){
+	currY += delta;
+	mColliders.y = currY;
+	if ((currY < 0) || (currY + height > Screen_height) || checkCollision(mColliders, rect)){
+		movey(-delta, Screen_height, rect);
+		mColliders.y = currY;
+	}
 }
+void Sprite::movex(int delta, const int Screen_width, SDL_Rect& rect){
+	currX += delta;
+	mColliders.x = currX;
+	if ((currX < 0) || (currX + width > Screen_width) || checkCollision(mColliders, rect)){
+		movex(-delta, Screen_width, rect);
+		mColliders.x = currX;
+	}
+}
+
 int Sprite::getWidth(){
 	return width;
 }
 int Sprite::getHeight(){
 	return height;
 }
-void Sprite::movey(int delta){
-	currY += delta;
-}
+
 int Sprite::getX(){
 	return currX;
 }
