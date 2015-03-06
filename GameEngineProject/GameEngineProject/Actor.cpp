@@ -1,7 +1,7 @@
 #include "Actor.h"
 
-Actor::Actor(SpriteHandler* sprite, bool isInteractable, int x, int y)
-:sprite(sprite), interactable(isInteractable), x(x), y(y) {}
+Actor::Actor(SpriteHandler* sprite, int x, int y, std::string name, bool isInteractable)
+:sprite(sprite), interactable(isInteractable), x(x), y(y), name(name) {}
 
 Actor::~Actor() {
 }
