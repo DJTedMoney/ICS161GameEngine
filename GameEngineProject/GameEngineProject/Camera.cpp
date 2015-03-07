@@ -51,9 +51,6 @@ bool Camera::setBackground(std::string imageName)
 	}
 	else
 		return true;
-
-
-
 }
 
 void Camera::graduallyMoveScreenTo(int x, int y)
@@ -65,18 +62,19 @@ void Camera::graduallyMoveScreenTo(int x, int y)
 
 void Camera::moveCameraToPosition()
 {
-	if (currX != moveToX)
-	{
+	//If x/y aren't at the given position then update them
+	if (currX <= moveToX)
 		currX += 2;
-	}
-	if (currY != moveToY)
-	{
-
-	}
+	if (currY <= moveToY)
+		currY += 2;
+	//Check to see if x and y have gone past their x/y
+	
 }
 
 void Camera::update()
 {
+	if (movingScreen)
+		moveCameraToPosition();
 	//If some event calls for it change Camera position or other actions
 }
 
