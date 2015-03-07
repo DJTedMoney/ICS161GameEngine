@@ -20,6 +20,14 @@ void Actor::moveRelative(int deltaX, int deltaY) {
 	y += deltaY;
 }
 
+int Actor::getX() {
+	return x;
+}
+
+int Actor::getY() {
+	return y;
+}
+
 bool Actor::isInteractable() {
 	return interactable;
 }

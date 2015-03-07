@@ -14,6 +14,8 @@ public:
 	// Positioning
 	void moveAbsolute(int new_x, int new_y);
 	void moveRelative(int deltaX, int deltaY);
+	int getX();
+	int getY();
 
 	// Interactability 
 	bool isInteractable(); // returns interactable var
