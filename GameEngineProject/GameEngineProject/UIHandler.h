@@ -1,29 +1,51 @@
 #pragma once
 
-#include <string>
+
 #include <SDL.h>
 #include "SDL_ttf.h"
+
+// for the timer
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 class UIHandler {
 
 public:
 	// make some public stuff
-	UIHandler(SDL_Renderer* renderer, std::string fontName, int fontSize = 10, bool visible = true);
+	
+	UIHandler(SDL_Renderer* renderer, std::string fontName, int fontSize);
 	~UIHandler();
 
 	// for simply writing stuff on the screen
-	void write(std::string text, int x, int y);
+	SDL_Texture* loadText(const std::string &file, SDL_Renderer *ren);
+	void renderText(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, int w, int h);
+	void renderText(SDL_Texture *tex, SDL_Renderer *ren, int x, int y);
+	void write(std::string text, int x, int y, SDL_Color c);
 
-	// for actually displaying images --> 
-	// I need to do more research for buttons
-	void displayUI(SDL_Texture* texture, int x, int y);
+	void timerStuff();
+	//std::string &fontFile, int size, SDL_Renderer *r
+
+	clock_t timer;
+
+	SDL_Texture* getClock();
+	SDL_Renderer* getRenderer();
+
 
 private:
 	// make some private stuff
 	SDL_Renderer* renderer;
 	SDL_Texture* texture;
+	SDL_Surface* surface;
+
 
 	std::string fontName;
 	TTF_Font* font;
 	SDL_Color fontColor;
+	int fontSize;
 };
+
+// some advice:
+// game state in another class 
+// different elements as different classes as well
+// update method -- thought of that
