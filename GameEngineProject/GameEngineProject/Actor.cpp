@@ -21,7 +21,7 @@ void Actor::setSprite(Sprite* new_sprite) {
 }
 
 Sprite& Actor::getSprite() {
-	return *(Sprite);
+	return *(sprite);
 }
 
 void Actor::moveAbsolute(int new_x, int new_y) {
