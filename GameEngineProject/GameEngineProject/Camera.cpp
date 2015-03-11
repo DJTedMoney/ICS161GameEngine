@@ -109,10 +109,24 @@ void Camera::moveCameraDown()
 	displayArea.y += 5;
 }
 
+void Camera::addRenderer(DisplayRenderer* myRend)
+{
+	toRender.push_back(myRend);
+}
+
+void Camera::copyToRenderer()
+{
+	for (auto& add: toRender)
+	{
+		SDL_RenderCopy(renderer, add->texture,add->src,add->dst);
+	}
+}
+
 void Camera::draw()
 {
 	//Render here
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, background, NULL, &displayArea);
+	copyToRenderer();
 	SDL_RenderPresent(renderer);
 }

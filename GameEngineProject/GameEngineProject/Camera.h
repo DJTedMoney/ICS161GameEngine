@@ -2,7 +2,8 @@
 #include <SDL_image.h>
 #include <iostream>
 #include "SaveHandler.h"
-
+#include <vector>;
+#include "RenderStruct.h"
 
 class Camera
 {
@@ -24,6 +25,7 @@ public:
 	void moveCameraLeft();
 	void moveCameraUp();
 	void moveCameraDown();
+	void addRenderer(DisplayRenderer* myRender);
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
@@ -34,6 +36,8 @@ public:
 	int SCREEN_HEIGHT;
 
 private:
+	std::vector<DisplayRenderer*> toRender;
+	void copyToRenderer();
 	//Variables to move screen to given position
 	void moveCameraToPosition();
 	SDL_Rect displayArea;
@@ -43,8 +47,4 @@ private:
 	int moveToY;
 	int currX;
 	int currY;
-	bool xMoved;
-	bool yMoved;
-	bool xPositive;
-	bool yPositive;
 };
