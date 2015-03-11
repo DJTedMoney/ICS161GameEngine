@@ -5,6 +5,12 @@ Actor::Actor(Sprite* sprite, int x, int y, std::string name, bool isInteractable
 	mColliders.w = width;
 	mColliders.h = height;
 }
+
+Actor::Actor(int x, int y, std::string name, bool isInteractable)
+:interactable(isInteractable), x(x), y(y), name(name) {
+	mColliders.w = width;
+	mColliders.h = height;
+}
 	
 Actor::~Actor() {
 }

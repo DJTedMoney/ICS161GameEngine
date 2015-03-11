@@ -6,6 +6,7 @@
 class Actor {
 public:
 	Actor(Sprite* sprite, int x, int y, std::string name, bool isInteractable=true);
+	Actor(int x, int y, std::string name, bool isInteractable=true);
 	~Actor();
 
 	// Sprite
