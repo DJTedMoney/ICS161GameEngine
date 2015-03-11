@@ -1,7 +1,7 @@
 #include "Actor.h"
 
-Actor::Actor(Sprite* sprite, int x, int y, std::string name, bool interActable)
-	:sprite(sprite), interactable(interActable), x(x), y(y), name(name)
+Actor::Actor(Sprite* sprite, int x, int y, std::string name, bool isInteractable)
+	:sprite(sprite), interactable(isInteractable), x(x), y(y), name(name)
 {
 	mColliders.w = width;
 	mColliders.h = height;
