@@ -3,13 +3,13 @@
 #include <map>
 #include <vector>
 #include <string>
-
+#include "SpriteHandler.h"
 class ActorHandler {
 public:
 	ActorHandler();
 	~ActorHandler();
 
-	void addActor(SpriteHandler* sprite, int x, int y, std::string name, bool isInteractable);
+	void addActor(Sprite* sprite, int x, int y, std::string name, bool isInteractable);
 
 	void removeActor(std::string name); // remove with actor's name
 	void removeActor(Actor actor);	// remove by retrieving actor's name from actor

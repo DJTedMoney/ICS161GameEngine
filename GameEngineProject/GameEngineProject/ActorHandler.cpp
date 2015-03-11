@@ -8,7 +8,7 @@ ActorHandler::~ActorHandler() {
 	}
 }
 
-void ActorHandler::addActor(SpriteHandler* sprite, int x, int y, std::string name, bool isInteractable) {
+void ActorHandler::addActor(Sprite* sprite, int x, int y, std::string name, bool isInteractable) {
 	Actor* a = new Actor(sprite, x, y, name, isInteractable);
 	actors[name] = a;
 }

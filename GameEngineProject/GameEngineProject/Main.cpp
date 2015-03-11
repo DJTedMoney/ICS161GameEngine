@@ -8,34 +8,27 @@
 //# include "Game.h"
 int main(int, char**)
 {
-
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0){
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+	{
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		return 1;
 	}
-
-	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG){
-		std::cout << "IMG_Init Error: " << SDL_GetError() << std::endl;
-		SDL_Quit();
-		return 1;
-	}
-
-
+	//SDL_SETRELATIVEMOUSEMODE
 	Game engine =  Game();
-
-
+	
 	SDL_Event e;
 	bool quit = false;
 	while (!quit){
-		while (SDL_PollEvent(&e)){
-			if (e.type == SDL_QUIT){
+		while (SDL_PollEvent(&e))
+		{
+			if (e.type == SDL_QUIT)
+			{
 				quit = true;
 			}
 			if (e.type == SDL_KEYDOWN){
 				if (e.key.keysym.sym == SDLK_RIGHT)
 				{
 					//Play sound effect
-			
 				} 
 				else if (e.key.keysym.sym == SDLK_LEFT)
 				{
@@ -49,15 +42,13 @@ int main(int, char**)
 				}
 				else if (e.key.keysym.sym == SDLK_DOWN)
 				{
-					//resume music
-				
+					//resume music		
 				}
 			}
 		}
 		//Render the scene
 		engine.draw();
 	}
-
 
 	Mix_Quit();
 	IMG_Quit();

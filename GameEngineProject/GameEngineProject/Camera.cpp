@@ -14,9 +14,13 @@ Camera::~Camera()
 
 bool Camera::init(int width, int height)
 {
+	SCREEN_HEIGHT = height;
+	SCREEN_WIDTH = width;
+	displayArea = { 0, 0, width, height };
+
 	resPath = getResourcePath("Images");
-	window = SDL_CreateWindow("GameEngineProject", 800, 100, SCREEN_WIDTH,
-		SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("GameEngineProject", 800, 100, width,
+		height, SDL_WINDOW_SHOWN);
 	if (window == nullptr)
 	{
 		std::cout << "CreateWindow Error: " << SDL_GetError() << std::endl;
@@ -47,13 +51,30 @@ bool Camera::setBackground(std::string imageName)
 	}
 	else
 		return true;
+}
 
+void Camera::graduallyMoveScreenTo(int x, int y)
+{
+	moveToX = x;
+	moveToY = y;
+	movingScreen = true;
+}
 
-
+void Camera::moveCameraToPosition()
+{
+	//If x/y aren't at the given position then update them
+	if (currX <= moveToX)
+		currX += 2;
+	if (currY <= moveToY)
+		currY += 2;
+	//Check to see if x and y have gone past their x/y
+	
 }
 
 void Camera::update()
 {
+	if (movingScreen)
+		moveCameraToPosition();
 	//If some event calls for it change Camera position or other actions
 }
 
@@ -61,6 +82,6 @@ void Camera::draw()
 {
 	//Render here
 	SDL_RenderClear(renderer);
-	SDL_RenderCopy(renderer, background, NULL, NULL);
+	SDL_RenderCopy(renderer, background, NULL, &displayArea);
 	SDL_RenderPresent(renderer);
 }
