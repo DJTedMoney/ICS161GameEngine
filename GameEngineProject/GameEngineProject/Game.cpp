@@ -28,6 +28,7 @@ void Game::update()
 	else
 	{
 		//Call peoples updates.
+		mainCamera.update();
 	}
 }
 

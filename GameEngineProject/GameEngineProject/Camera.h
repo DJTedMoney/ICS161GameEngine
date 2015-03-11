@@ -17,9 +17,13 @@ public:
 	bool init(int width, int height);
 	bool setBackground(std::string myPath);
 
-	//Takes an x and a y that it will gracefully move the camera to
-	//Call only once. Camera takes care of the rest
+	//Takes an x and a y amount to move the screen.
+	//Relative to the mouse movement
 	void graduallyMoveScreenTo(int x, int y);
+	void moveCameraRight();
+	void moveCameraLeft();
+	void moveCameraUp();
+	void moveCameraDown();
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
@@ -33,10 +37,14 @@ private:
 	//Variables to move screen to given position
 	void moveCameraToPosition();
 	SDL_Rect displayArea;
+	SDL_Rect movedCamera;
 	bool movingScreen;
 	int moveToX;
 	int moveToY;
 	int currX;
 	int currY;
-
+	bool xMoved;
+	bool yMoved;
+	bool xPositive;
+	bool yPositive;
 };

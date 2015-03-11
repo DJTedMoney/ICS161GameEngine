@@ -28,25 +28,32 @@ int main(int, char**)
 			if (e.type == SDL_KEYDOWN){
 				if (e.key.keysym.sym == SDLK_RIGHT)
 				{
-					//Play sound effect
+					engine.mainCamera.moveCameraRight();
 				} 
 				else if (e.key.keysym.sym == SDLK_LEFT)
 				{
-					//Play background music
-				
+					engine.mainCamera.moveCameraLeft();
 				}
 				else if (e.key.keysym.sym == SDLK_UP)
 				{
-					//pause music
-					
+					engine.mainCamera.moveCameraUp();
 				}
 				else if (e.key.keysym.sym == SDLK_DOWN)
 				{
-					//resume music		
+					engine.mainCamera.moveCameraDown();
 				}
 			}
 		}
 		//Render the scene
+		int xChange = 0, yChange = 0;
+		auto r = SDL_GetMouseState(&xChange, &yChange);
+		std::cout << "Relative move x/y: " << xChange << "," << yChange << std::endl;
+
+
+		if (xChange != 0 || yChange != 0)
+			engine.mainCamera.graduallyMoveScreenTo(xChange, yChange);
+
+		engine.update();
 		engine.draw();
 	}
 
