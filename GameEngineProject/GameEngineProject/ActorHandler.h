@@ -15,6 +15,7 @@ public:
 	void removeActor(Actor actor);	// remove by retrieving actor's name from actor
 
 	Actor& getActor(std::string actor_name); // returns reference to the actor
+	std::map<std::string, Actor*> getAllActors(); // returns map of actors
 
 private:
 	std::map<std::string, Actor*> actors; // actor name (identifier) is the same as the key

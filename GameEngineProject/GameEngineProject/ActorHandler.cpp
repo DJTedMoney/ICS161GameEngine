@@ -24,3 +24,7 @@ void ActorHandler::removeActor(Actor actor) {
 Actor& ActorHandler::getActor(std::string actor_name) {
 	return *(actors[actor_name]);
 }
+
+std::map<std::string, Actor*> ActorHandler::getAllActors() {
+	return actors;
+}
