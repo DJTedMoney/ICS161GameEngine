@@ -11,6 +11,7 @@ public:
 
 	// Sprite
 	void setSprite(Sprite* new_sprite);
+	Sprite& getSprite();
 
 	// Positioning and Dimensions
 	void moveAbsolute(int new_x, int new_y);

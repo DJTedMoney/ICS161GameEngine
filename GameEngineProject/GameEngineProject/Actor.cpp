@@ -20,6 +20,10 @@ void Actor::setSprite(Sprite* new_sprite) {
 	sprite = new_sprite;
 }
 
+Sprite& Actor::getSprite() {
+	return *(Sprite);
+}
+
 void Actor::moveAbsolute(int new_x, int new_y) {
 	x = new_x;
 	y = new_y;
