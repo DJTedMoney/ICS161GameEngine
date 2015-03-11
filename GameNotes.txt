@@ -1,3 +1,24 @@
+Need to make a few subclasses of Actor:
+
+
+TriggerPoint
+
+Character:
+	Enemy - will be a zergling and a boss
+	Player
+
+
+
+
+
+
+
+
+
+
+
+
+
 Structure
 
 Game loop:

@@ -29,22 +29,22 @@ void Actor::moveAbsolute(int new_x, int new_y) {
 	y = new_y;
 }
 
-void Actor::movey(int delta, const int Screen_height){
+void Actor::movey(int delta){
 	y += delta;
 	mColliders.y = y;
-	if ((y < 0) || (y + height > Screen_height)  ){
-		movey(-delta, Screen_height);
-		mColliders.y = y;
-	}
+	//if ((y < 0) || (y + height > Screen_height)  ){
+	//	movey(-delta, Screen_height);
+	//	mColliders.y = y;
+	//}
 }
 
-void Actor::movex(int delta, const int Screen_width){
+void Actor::movex(int delta){
 	x += delta;
 	mColliders.x = x;
-	if ((x < 0) || (x + width > Screen_width) ){
-		movex(-delta, Screen_width);
-		mColliders.x = x;
-	}
+	//if ((x < 0) || (x + width > Screen_width) ){
+	//	movex(-delta, Screen_width);
+	//	mColliders.x = x;
+	//}
 }
 
 int Actor::getX() {
