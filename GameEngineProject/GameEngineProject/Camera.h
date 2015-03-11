@@ -32,6 +32,7 @@ public:
 	SDL_Texture* background;
 
 	std::string resPath;
+	std::string musResPath;
 	int SCREEN_WIDTH;
 	int SCREEN_HEIGHT;
 

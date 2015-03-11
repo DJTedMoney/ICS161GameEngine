@@ -22,6 +22,7 @@ bool Camera::init(int width, int height)
 	displayArea = { 0, 0, width, height };
 
 	resPath = getResourcePath("Images");
+	musResPath = getResourcePath("Music");
 	window = SDL_CreateWindow("GameEngineProject", 800, 100, width,
 		height, SDL_WINDOW_SHOWN);
 	if (window == nullptr)
