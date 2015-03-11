@@ -98,11 +98,15 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="ActorHandler.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameEvent.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="res_path.h" />
     <ClInclude Include="SaveHandler.h" />
+    <ClInclude Include="TriggerPoint.h" />
     <ClInclude Include="UIHandler.h" />
     <ClInclude Include="SoundHandler.h" />
     <ClInclude Include="SpriteHandler.h" />
