@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <vector>
+#include "Sprite.h"
 
 class SpriteHandler
 {
@@ -9,16 +11,17 @@ public:
 	SpriteHandler();
 	~SpriteHandler();
 
-	void makeSprite();
+	void makeSprite(Sprite s);
 	//Paramater should change based on data structure used
-	void displaySprite();
-	void moveSprite(int valueToMove);
+	//Index = index of the sprite on which to call the function
+	void displaySprite(int index, int fIndex);
+	void displaySprite(int index, std::string seq);
+	Sprite getSprite(int index);
 	//If it's hit either side of the screen and/or other objects?
 	//Call collision class
-	void checkCollision();
-	void scale(int scaleFactor);
-	void rotate(float rotateAmount);
+	void checkCollision(int index);
 
 private:
+	std::vector<Sprite> sprites;
 
 };
