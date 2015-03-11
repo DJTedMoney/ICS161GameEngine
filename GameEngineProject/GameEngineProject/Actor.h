@@ -15,8 +15,8 @@ public:
 
 	// Positioning and Dimensions
 	void moveAbsolute(int new_x, int new_y);
-	void movex(int delta, const int Screen_height);
-	void movey(int delta, const int Screen_height);
+	void movex(int delta);
+	void movey(int delta);
 	int getX();
 	int getY();
 	int getWidth();
