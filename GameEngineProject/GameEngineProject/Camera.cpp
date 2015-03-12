@@ -119,15 +119,12 @@ void Camera::copyToRenderer()
 {
 	for (auto& add: toRender)
 	{
-		SDL_RenderCopy(renderer, add->texture,add->src,add->dst);
+		SDL_RenderCopy(renderer, add->texture,add->src,&displayArea);
 	}
 }
 
 void Camera::draw()
 {
-	//Render here
-	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, background, NULL, &displayArea);
-	copyToRenderer();
 	SDL_RenderPresent(renderer);
 }

@@ -5,6 +5,11 @@ SpriteHandler::SpriteHandler()
 
 }
 
+SpriteHandler::~SpriteHandler()
+{
+
+}
+
 void SpriteHandler::makeSprite(Sprite s)
 {
 	sprites.push_back(s);
@@ -27,5 +32,6 @@ Sprite SpriteHandler::getSprite(int index)
 
 void SpriteHandler::checkCollision(int index)
 {
-	sprites[index].checkCollision();
+	//Needs to be fixed
+	//sprites[index].checkCollision();
 }

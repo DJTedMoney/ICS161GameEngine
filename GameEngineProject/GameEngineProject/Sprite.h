@@ -13,7 +13,7 @@ public:
 	//hitbox
 	SDL_Rect mColliders;
 	//new constructor with a rotation degree parameter
-	~Sprite(void);
+	~Sprite();
 
 	void setPos(int x, int y);
 	void movex(int delta, const int Screen_width);
