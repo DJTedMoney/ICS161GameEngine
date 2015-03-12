@@ -21,6 +21,7 @@ public:
 	//Takes an x and a y amount to move the screen.
 	//Relative to the mouse movement
 	void graduallyMoveScreenTo(int x, int y);
+	//Moves the camera a set amount in the given direction
 	void moveCameraRight();
 	void moveCameraLeft();
 	void moveCameraUp();

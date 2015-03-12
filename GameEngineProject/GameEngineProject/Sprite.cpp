@@ -7,7 +7,12 @@ Sprite::Sprite(int width, int height, SDL_Renderer* ren) : width{ width }, heigh
 	mColliders.h = height;
 }
 
-void Sprite ::  setPos(int x, int y)
+Sprite::~Sprite()
+{
+
+}
+
+void Sprite::setPos(int x, int y)
 {
 	this->currX = x;
 	this-> currY = y;
@@ -114,7 +119,7 @@ int Sprite :: addFrameToSequence(std::string seqName, int frameIndex)
 
 
 
-void Sprite::show(int frameIndex)
+DisplayRenderer Sprite::show(int frameIndex)
 {
 	SDL_Rect src, dst;
 
@@ -128,14 +133,19 @@ void Sprite::show(int frameIndex)
 	dst.w = width; 
 	dst.h = height;
 
+	DisplayRenderer toReturn;
+	toReturn.texture = frames[frameIndex].texture;
+	toReturn.dst = &dst;
+	toReturn.src = &src;
 	SDL_RenderCopy(this->renderer, frames[frameIndex].texture, &src, &dst);
+	return toReturn;
 }
 
-void Sprite::show(std::string sequence)
+DisplayRenderer Sprite::show(std::string sequence)
 {
 	if (sequenceIndex < sequenceList[sequence].size()-1)
 	{
-		show(sequenceList[sequence][sequenceIndex]);
+		return show(sequenceList[sequence][sequenceIndex]);
 		sequenceIndex++;
 	}
 	//else if (sequenceList[sequence].size()-1 == sequenceIndex){
