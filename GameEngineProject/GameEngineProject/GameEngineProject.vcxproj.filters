@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\tmx">
+      <UniqueIdentifier>{4457c871-3e99-4f5e-862f-44d2e5b86d4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tmx">
+      <UniqueIdentifier>{0dd94d21-48c6-4517-b97a-2333c3d25161}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEvent.cpp">
@@ -47,6 +53,27 @@
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\TileSet.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\Component.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\Layers.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\LayerVisitor.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\Map.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\Object.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\Parser.cc">
+      <Filter>Source Files\tmx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +130,51 @@
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Adaptor.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Cell.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Component.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Geometry.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Image.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\ImageLayer.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Layer.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\LayerVisitor.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Map.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Object.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\ObjectLayer.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Terrain.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Tile.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\TileLayer.h">
+      <Filter>Header Files\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\TileSet.h">
+      <Filter>Header Files\tmx</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

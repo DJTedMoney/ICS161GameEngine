@@ -53,7 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\Resources\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GameEngineProject\libtmx-0.3.0\src\include;$(SolutionDir)\..\Resources\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -72,7 +72,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\Resources\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GameEngineProject\libtmx-0.3.0\src\include;$(SolutionDir)\..\Resources\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,6 +90,13 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameEvent.cpp" />
     <ClCompile Include="GameEventHandler.cpp" />
+    <ClCompile Include="libtmx-0.3.0\src\lib\Component.cc" />
+    <ClCompile Include="libtmx-0.3.0\src\lib\Layers.cc" />
+    <ClCompile Include="libtmx-0.3.0\src\lib\LayerVisitor.cc" />
+    <ClCompile Include="libtmx-0.3.0\src\lib\Map.cc" />
+    <ClCompile Include="libtmx-0.3.0\src\lib\Object.cc" />
+    <ClCompile Include="libtmx-0.3.0\src\lib\Parser.cc" />
+    <ClCompile Include="libtmx-0.3.0\src\lib\TileSet.cc" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="SaveHandlercpp.cpp" />
     <ClCompile Include="SoundHandler.cpp" />
@@ -105,6 +112,21 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameEvent.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Adaptor.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Cell.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Component.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Geometry.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Image.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\ImageLayer.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Layer.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\LayerVisitor.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Map.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Object.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\ObjectLayer.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Terrain.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Tile.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\TileLayer.h" />
+    <ClInclude Include="libtmx-0.3.0\src\include\tmx\TileSet.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RenderStruct.h" />
