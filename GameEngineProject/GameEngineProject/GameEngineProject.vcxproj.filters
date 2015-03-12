@@ -16,9 +16,6 @@
     <Filter Include="Source Files\tmx">
       <UniqueIdentifier>{4457c871-3e99-4f5e-862f-44d2e5b86d4a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\tmx">
-      <UniqueIdentifier>{0dd94d21-48c6-4517-b97a-2333c3d25161}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEvent.cpp">
@@ -130,51 +127,6 @@
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Adaptor.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Cell.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Component.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Geometry.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Image.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\ImageLayer.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Layer.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\LayerVisitor.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Map.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Object.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\ObjectLayer.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Terrain.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\Tile.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\TileLayer.h">
-      <Filter>Header Files\tmx</Filter>
-    </ClInclude>
-    <ClInclude Include="libtmx-0.3.0\src\include\tmx\TileSet.h">
-      <Filter>Header Files\tmx</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
