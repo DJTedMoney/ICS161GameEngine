@@ -6,19 +6,10 @@
 
 #include <regex>
 #include <sstream>
+#include <stdexcept>
 
 #pragma message("TODO REMOVE IOSTREAM")
 #include <iostream>
-
-Layer::Layer(const tmx::Layer* p_layer) :
-    p_layer_(p_layer)
-{
-}
-
-const std::string& Layer::getName() const
-{
-    return p_layer_->getName();
-}
 
 Map::Map(SDL_Renderer* p_renderer, const std::string& file_path)
     : p_renderer_(p_renderer)
@@ -39,53 +30,14 @@ void Map::readFile(const std::string& file_path)
     }
 
     loadTileSets();
+    loadCells();
 
-    // test... print details for each cell in each tile layer
-    for(auto p_layer : p_map_->getLayers())
+    for(int y = 0; y < getHeight(); ++y)
     {
-        auto p_tile_layer = dynamic_cast<const tmx::TileLayer*>(p_layer);
-        if(p_tile_layer != nullptr)
+        for(int x = 0; x < getWidth(); ++x)
         {
-            std::cout << "tile layer!" << std::endl;
-            int i = 0;
-            for(auto cell : *p_tile_layer)
-            {
-                int y = i / getWidth();
-                int x = i - y;
-
-                auto gid = cell.getGID();
-                auto p_tileset = p_map_->getTileSetFromGID(gid);
-                std::string source;
-                if(p_tileset == nullptr)
-                {
-                    source = "no-tileset";
-                }
-                else
-                {
-                    source = "tileset: ";
-                    assert(p_tileset != nullptr);
-                    const tmx::Image* p_image;
-                    if(p_tileset->hasImage())
-                    {
-                        source += std::string("p_tileset->hasImage(): ");
-                        p_image = p_tileset->getImage();
-                    }
-                    else
-                    {
-                        source += std::string("!p_tileset->hasImage(): ");
-                        auto p_tile = p_tileset->getTile(gid);
-                        assert(p_tile != nullptr);
-                        p_image = p_tile->getImage();
-                    }
-                    assert(p_image != nullptr);
-                    source += std::string(p_image->getSource().string());
-                }
-
-                std::cout << "    cell(" << x << ", " << y << "); gid: " << cell.getGID()
-                    << ", path: \"" << source << "\"" << std::endl;
-
-                ++i;
-            }
+            auto& cell = getCell(x, y);
+            std::cout << "getCell(" << x << ", " << y << "): {x: " << cell.getX() << ", y: " << cell.getY() << ", is_wall: " << std::boolalpha << cell.isWall() << "}" << std::endl;
         }
     }
 }
@@ -156,12 +108,25 @@ SDL_Color Map::getBackgroundColor() const
     return hexToColor(p_map_->getBackgroundColor());
 }
 
-std::vector<Layer> Map::getLayers() const
+bool Map::isInMap(int x, int y) const
 {
-    std::vector<Layer> result;
-    auto src = p_map_->getLayers();
-    std::transform(src.begin(), src.end(), std::back_inserter(result), [] (const tmx::Layer* p_layer) { return Layer(p_layer); });
-    return result;
+    return x >= 0 && y >= 0 && x < getWidth() && y < getHeight();
+}
+
+const Cell& Map::getCell(int x, int y) const
+{
+    if(!isInMap(x, y))
+    {
+        std::ostringstream message;
+        message << "coordinate {" << x << ", " << y << "} not in map";
+        throw std::runtime_error(message.str());
+    }
+    return const_cast<Map*>(this)->getCell_(x, y);
+}
+
+Cell& Map::getCell_(int x, int y)
+{
+    return cells_[y * getWidth() + x];
 }
 
 void Map::loadTileSets()
@@ -171,7 +136,63 @@ void Map::loadTileSets()
         if(p_tileset->hasImage())
         {
             tile_set_surfaces_.emplace(std::make_pair(p_tileset, loadImage(p_tileset->getImage()->getSource().string())));
-            //tile_set_surfaces_[p_tileset] = loadImage(p_tileset->getImage()->getSource().string());
+        }
+    }
+}
+
+void Map::loadCells()
+{
+    // create vector of default-initialized cells
+    cells_ = std::vector<Cell>{static_cast<std::size_t>(getWidth() * getHeight())};
+
+    // loop through all layers
+    for(auto p_layer : p_map_->getLayers())
+    {
+        auto p_tile_layer = dynamic_cast<const tmx::TileLayer*>(p_layer);
+        if(p_tile_layer != nullptr)
+        {
+            // layers named "wall" contain walls
+            auto& name = p_tile_layer->getName();
+            bool is_wall = name == "wall";
+
+            // loop through each tmx::Cell
+            int i = 0;
+            for(auto tmxCell : *p_tile_layer)
+            {
+                // calculate x, y of cell
+                int y = i / getWidth();
+                int x = i - y * getWidth();
+
+                // store information in the Cell in our cells_
+                auto& cell = getCell_(x, y);
+                cell.x_ = x;
+                cell.y_ = y;
+
+                auto cell_gid = tmxCell.getGID();
+                auto p_tile_set = p_map_->getTileSetFromGID(cell_gid);
+                // if this cell is empty
+                if(p_tile_set == nullptr)
+                {
+                    cell.p_surface_ = nullptr;
+                }
+                else
+                {
+                    // calculate surface offset
+                    auto relative_gid = cell_gid - p_tile_set->getFirstGID();
+                    auto p_surface = tile_set_surfaces_.at(p_tile_set).get();
+                    unsigned int surface_w = static_cast<unsigned int>(p_surface->w);
+                    unsigned int surface_h = static_cast<unsigned int>(p_surface->h);
+                    auto coords = p_tile_set->getCoords(relative_gid, {surface_w, surface_h});
+
+                    cell.is_wall_ = is_wall;
+                    cell.p_surface_ = p_surface;
+                    cell.surface_offset_x_ = coords.x;
+                    cell.surface_offset_y_ = coords.y;
+                    //std::cout << "x: " << x << ", y: " << y << ", cell_gid: " << cell_gid << ", relative_gid:" << relative_gid << ", p_tile_set: " << p_tile_set << ", surface_w: " << surface_w << ", surface_h: " << surface_h << std::endl;
+                }
+
+                ++i;
+            }
         }
     }
 }

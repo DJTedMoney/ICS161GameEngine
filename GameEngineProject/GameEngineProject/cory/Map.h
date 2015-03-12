@@ -9,18 +9,24 @@
 #include <unordered_map>
 #include <vector>
 
-class Layer
+class Cell
 {
 public:
-    Layer() = default;
-
-    const std::string& getName() const;
+    int getX() const { return x_; }
+    int getY() const { return y_; }
+    bool isWall() const { return is_wall_; }
+    SDL_Surface *getSurface() const { return p_surface_; }
+    int getSurfaceOffsetX() const { return surface_offset_x_; }
+    int getSurfaceOffsetY() const { return surface_offset_y_; }
 
 private:
     friend class Map;
-
-    Layer(const tmx::Layer* p_layer);
-    const tmx::Layer* p_layer_;
+    int x_ = 0;
+    int y_ = 0;
+    bool is_wall_ = false;
+    SDL_Surface *p_surface_ = nullptr;
+    int surface_offset_x_ = 0;
+    int surface_offset_y_ = 0;
 };
 
 class Map
@@ -39,14 +45,20 @@ public:
 
     SDL_Color getBackgroundColor() const;
 
-    std::vector<Layer> getLayers() const;
+    bool isInMap(int x, int y) const;
+    const Cell& getCell(int x, int y) const;
 
 private:
     using SurfacePtr = std::unique_ptr<SDL_Surface, decltype(&SDL_FreeSurface)>;
+
+    Cell& getCell_(int x, int y);
+
     void loadTileSets();
+    void loadCells();
     SurfacePtr loadImage(const std::string& image_path) const;
 
     SDL_Renderer *p_renderer_;
     std::unique_ptr<tmx::Map> p_map_;
     std::unordered_map<const tmx::TileSet*, SurfacePtr> tile_set_surfaces_;
+    std::vector<Cell> cells_;
 };
