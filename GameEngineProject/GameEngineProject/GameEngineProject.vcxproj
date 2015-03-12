@@ -90,6 +90,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameEvent.cpp" />
     <ClCompile Include="GameEventHandler.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="SaveHandlercpp.cpp" />
     <ClCompile Include="SoundHandler.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEventHandler.h" />
     <ClInclude Include="GameEvent.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RenderStruct.h" />
     <ClInclude Include="res_path.h" />
