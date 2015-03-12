@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include "RenderStruct.h"
 
 class Sprite
 {
@@ -23,12 +24,6 @@ public:
 	int getHeight();
 	bool checkCollision(SDL_Rect& a, SDL_Rect& b);
 
-
-
-
-
-
-
 	// makeFrame returns the unique index of the frame
 	int makeFrame(SDL_Texture* texture, int x, int y);
 
@@ -36,9 +31,9 @@ public:
 	int addFrameToSequence(std::string seqName, int frameIndex);
 
 	// show(int) renders the frame with the specified frameIndex
-	void show(int frameIndex);
+	DisplayRenderer show(int frameIndex);
 	// show(string) cycles through all frames in the specified sequence, one per call
-	void show(std::string sequence);
+	DisplayRenderer show(std::string sequence);
 
 
 // The private part of the class is given as a hint or suggestion.

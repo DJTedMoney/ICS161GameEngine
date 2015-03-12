@@ -4,6 +4,7 @@ Game::Game()
 {
 	gameIsRunning = true;
 	isPaused = false;
+	SDL_SetRelativeMouseMode(SDL_TRUE);
 	SaveHandler::getInstance()->init();
 	events.init();
 

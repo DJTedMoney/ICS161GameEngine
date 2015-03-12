@@ -1,15 +1,14 @@
 #include "Sprite.h"
 
-Sprite::Sprite(int width, int height, SDL_Renderer* ren) : width{ width }, height{ height }, renderer{ ren }{
-
-
+Sprite::Sprite(int width, int height, SDL_Renderer* ren) : width{ width }, height{ height }, renderer{ ren }
+{
 	//initializes hitbox
 	mColliders.w = width;
 	mColliders.h = height;
-
-
 }
-void Sprite ::  setPos(int x, int y){
+
+void Sprite ::  setPos(int x, int y)
+{
 	this->currX = x;
 	this-> currY = y;
 	//puts hitbox under sprite
@@ -63,19 +62,23 @@ bool Sprite::checkCollision(SDL_Rect& a, SDL_Rect& b)
 }
 
 
-void Sprite::movey(int delta, const int Screen_height){
+void Sprite::movey(int delta, const int Screen_height)
+{
 	currY += delta;
 	mColliders.y = currY;
-	if ((currY < 0) || (currY + height > Screen_height)  ){
+	if ((currY < 0) || (currY + height > Screen_height)  )
+	{
 		movey(-delta, Screen_height);
 		mColliders.y = currY;
 	}
 }
 
-void Sprite::movex(int delta, const int Screen_width){
+void Sprite::movex(int delta, const int Screen_width)
+{
 	currX += delta;
 	mColliders.x = currX;
-	if ((currX < 0) || (currX + width > Screen_width) ){
+	if ((currX < 0) || (currX + width > Screen_width) )
+	{
 		movex(-delta, Screen_width);
 		mColliders.x = currX;
 	}
@@ -95,21 +98,24 @@ int Sprite::getX(){
 int Sprite::getY(){
 	return currY;
 }
-int  Sprite::makeFrame(SDL_Texture* texture, int x, int y){
+int  Sprite::makeFrame(SDL_Texture* texture, int x, int y)
+{
 	frame fram{ texture, x, y };
 	frames.push_back(fram);
 	//index start from 0
 	return frames.size()-1;
 }
 
-int Sprite :: addFrameToSequence(std::string seqName, int frameIndex){
+int Sprite :: addFrameToSequence(std::string seqName, int frameIndex)
+{
 	sequenceList[seqName].push_back(frameIndex);
 	return sequenceList.size()-1; 
 }
 
 
 
-void Sprite::show(int frameIndex){
+void Sprite::show(int frameIndex)
+{
 	SDL_Rect src, dst;
 
 	src.x = frames[frameIndex].x;
@@ -121,21 +127,23 @@ void Sprite::show(int frameIndex){
 	dst.y = currY;
 	dst.w = width; 
 	dst.h = height;
+
 	SDL_RenderCopy(this->renderer, frames[frameIndex].texture, &src, &dst);
 }
 
-void Sprite::show(std::string sequence){
-	if (sequenceIndex < sequenceList[sequence].size()-1){
+void Sprite::show(std::string sequence)
+{
+	if (sequenceIndex < sequenceList[sequence].size()-1)
+	{
 		show(sequenceList[sequence][sequenceIndex]);
 		sequenceIndex++;
 	}
 	//else if (sequenceList[sequence].size()-1 == sequenceIndex){
 	//	show(sequenceList[sequence][0]);
 	//}
-	else if (sequenceIndex >= (sequenceList[sequence].size())-1){
+	else if (sequenceIndex >= (sequenceList[sequence].size())-1)
+	{
 		sequenceIndex = 0;
 		show(sequenceList[sequence][sequenceIndex]);
 	}
-
-
 }

@@ -167,6 +167,7 @@ int main(int, char**)
 		}
 		//Render the scene
 		int xChange = 0, yChange = 0;
+		SDL_SetRelativeMouseMode(SDL_TRUE);
 		auto r = SDL_GetMouseState(&xChange, &yChange);
 		std::cout << "Relative move x/y: " << xChange << "," << yChange << std::endl;
 
