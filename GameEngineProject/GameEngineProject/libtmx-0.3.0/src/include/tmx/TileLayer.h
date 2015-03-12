@@ -50,7 +50,7 @@ namespace tmx {
     /**
      * @brief A cell iterator.
      */
-    typedef typename std::vector<Cell>::const_iterator const_iterator;
+    typedef std::vector<Cell>::const_iterator const_iterator;
 
     /**
      * @brief Get the begin iterator on the cells.

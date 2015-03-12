@@ -346,7 +346,7 @@ namespace tmx {
     /**
      * @brief A point iterator.
      */
-    typedef typename std::vector<Vector2i>::const_iterator const_iterator;
+    typedef std::vector<Vector2i>::const_iterator const_iterator;
 
     /**
      * @brief Get the begin iterator on the points.
