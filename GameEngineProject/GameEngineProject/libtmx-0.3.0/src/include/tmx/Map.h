@@ -80,7 +80,7 @@ namespace tmx {
      *
      * @returns the version of the TMX format (generally "1.0")
      */
-    const std::string& getVersion() const noexcept {
+    const std::string& getVersion() const /*noexcept*/ {
       return m_version;
     }
 
@@ -89,7 +89,7 @@ namespace tmx {
      *
      * @returns the orientation of the map
      */
-    Orientation getOrientation() const noexcept {
+    Orientation getOrientation() const /*noexcept*/ {
       return m_orientation;
     }
 
@@ -98,7 +98,7 @@ namespace tmx {
      *
      * @returns the width of the map (in number of tiles)
      */
-    unsigned getWidth() const noexcept {
+    unsigned getWidth() const /*noexcept*/ {
       return m_width;
     }
 
@@ -107,7 +107,7 @@ namespace tmx {
      *
      * @returns the height of the map (in number of tiles)
      */
-    unsigned getHeight() const noexcept {
+    unsigned getHeight() const /*noexcept*/ {
       return m_height;
     }
 
@@ -116,7 +116,7 @@ namespace tmx {
      *
      * @returns the width of tiles (in pixels)
      */
-    unsigned getTileWidth() const noexcept {
+    unsigned getTileWidth() const /*noexcept*/ {
       return m_tilewidth;
     }
 
@@ -125,7 +125,7 @@ namespace tmx {
      *
      * @returns the height of tiles (in pixels)
      */
-    unsigned getTileHeight() const noexcept {
+    unsigned getTileHeight() const /*noexcept*/ {
       return m_tileheight;
     }
 
@@ -134,7 +134,7 @@ namespace tmx {
      *
      * @returns the background color
      */
-    const std::string& getBackgroundColor() const noexcept {
+    const std::string& getBackgroundColor() const /*noexcept*/ {
       return m_bgcolor;
     }
 
@@ -143,7 +143,7 @@ namespace tmx {
      *
      * @returns the render order
      */
-    RenderOrder getRenderOrder() const noexcept {
+    RenderOrder getRenderOrder() const /*noexcept*/ {
       return m_render_order;
     }
     /** @} */
@@ -175,7 +175,7 @@ namespace tmx {
      *
      * @return a tileset range
      */
-    const_tileset_range getTileSets() const noexcept {
+    const_tileset_range getTileSets() const /*noexcept*/ {
       return boost::make_iterator_range(m_tilesets) | boost::adaptors::transformed(Adaptor());
     }
 
@@ -185,7 +185,7 @@ namespace tmx {
      * @param gid a global id
      * @returns the corresponding tileset
      */
-    const TileSet *getTileSetFromGID(unsigned gid) const noexcept;
+    const TileSet *getTileSetFromGID(unsigned gid) const /*noexcept*/;
     /** @} */
 
     /**
@@ -211,7 +211,7 @@ namespace tmx {
      *
      * @returns a layer range
      */
-    const_layer_range getLayers() const noexcept {
+    const_layer_range getLayers() const /*noexcept*/ {
       return boost::make_iterator_range(m_layers) | boost::adaptors::transformed(Adaptor());
     }
 

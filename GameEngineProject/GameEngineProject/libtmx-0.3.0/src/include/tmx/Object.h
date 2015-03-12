@@ -64,7 +64,7 @@ namespace tmx {
      *
      * @return the kind of the object
      */
-    Kind getKind() const noexcept {
+    Kind getKind() const /*noexcept*/ {
       return m_kind;
     }
 
@@ -73,7 +73,7 @@ namespace tmx {
      *
      * @return the name of the object
      */
-    const std::string& getName() const noexcept {
+    const std::string& getName() const /*noexcept*/ {
       return m_name;
     }
 
@@ -82,7 +82,7 @@ namespace tmx {
      *
      * @return the type of the object.
      */
-    const std::string& getType() const noexcept {
+    const std::string& getType() const /*noexcept*/ {
       return m_type;
     }
 
@@ -91,7 +91,7 @@ namespace tmx {
      *
      * @return the x coordinate of the origin
      */
-    unsigned getX() const noexcept {
+    unsigned getX() const /*noexcept*/ {
       return m_origin.x;
     }
 
@@ -100,7 +100,7 @@ namespace tmx {
      *
      * @return the y coordinate of the origin
      */
-    unsigned getY() const noexcept {
+    unsigned getY() const /*noexcept*/ {
       return m_origin.y;
     }
 
@@ -112,7 +112,7 @@ namespace tmx {
      *
      * @return the origin
      */
-    const Vector2u& getOrigin() const noexcept {
+    const Vector2u& getOrigin() const /*noexcept*/ {
       return m_origin;
     }
 
@@ -121,7 +121,7 @@ namespace tmx {
      *
      * @return the angle of rotation in degrees clockwise
      */
-    double getRotation() const noexcept {
+    double getRotation() const /*noexcept*/ {
       return m_rotation;
     }
 
@@ -130,7 +130,7 @@ namespace tmx {
      *
      * @returns true if the object is visible
      */
-    bool isVisible() const noexcept {
+    bool isVisible() const /*noexcept*/ {
       return m_visible;
     }
 
@@ -139,7 +139,7 @@ namespace tmx {
      *
      * @returns true if the object is a rectangle
      */
-    bool isRectangle() const noexcept {
+    bool isRectangle() const /*noexcept*/ {
       return m_kind == RECTANGLE;
     }
 
@@ -148,7 +148,7 @@ namespace tmx {
      *
      * @returns true if the object is an ellipse
      */
-    bool isEllipse() const noexcept {
+    bool isEllipse() const /*noexcept*/ {
       return m_kind == ELLIPSE;
     }
 
@@ -157,7 +157,7 @@ namespace tmx {
      *
      * @returns true if the object is a polyline
      */
-    bool isPolyline() const noexcept {
+    bool isPolyline() const /*noexcept*/ {
       return m_kind == POLYLINE;
     }
 
@@ -166,7 +166,7 @@ namespace tmx {
      *
      * @returns true if the object is a polygon
      */
-    bool isPolygon() const noexcept {
+    bool isPolygon() const /*noexcept*/ {
       return m_kind == POLYGON;
     }
 
@@ -175,7 +175,7 @@ namespace tmx {
      *
      * @returns true if the object is a tile
      */
-    bool isTile() const noexcept {
+    bool isTile() const /*noexcept*/ {
       return m_kind == TILE;
     }
 
@@ -208,7 +208,7 @@ namespace tmx {
      *
      * @return the global id
      */
-    unsigned getGID() const noexcept {
+    unsigned getGID() const /*noexcept*/ {
       return m_gid;
     }
 
@@ -217,7 +217,7 @@ namespace tmx {
      *
      * @returns true if the tile object must be flipped horizontally
      */
-    bool isHorizontallyFlipped() const noexcept {
+    bool isHorizontallyFlipped() const /*noexcept*/ {
       return m_hflip;
     }
 
@@ -226,7 +226,7 @@ namespace tmx {
      *
      * @returns true if the tile object must be flipped vertically
      */
-    bool isVerticallyFlipped() const noexcept {
+    bool isVerticallyFlipped() const /*noexcept*/ {
       return m_vflip;
     }
 
@@ -235,7 +235,7 @@ namespace tmx {
      *
      * @returns true if the tile object must be flipped diagonally
      */
-    bool isDiagonallyFlipped() const noexcept {
+    bool isDiagonallyFlipped() const /*noexcept*/ {
       return m_dflip;
     }
 
@@ -268,7 +268,7 @@ namespace tmx {
      *
      * @returns the width of the box
      */
-    unsigned getWidth() const noexcept {
+    unsigned getWidth() const /*noexcept*/ {
       return m_width;
     }
 
@@ -277,7 +277,7 @@ namespace tmx {
      *
      * @returns the height of the box
      */
-    unsigned getHeight() const noexcept {
+    unsigned getHeight() const /*noexcept*/ {
       return m_height;
     }
 
@@ -353,7 +353,7 @@ namespace tmx {
      *
      * @returns the begin iterator
      */
-    const_iterator begin() const noexcept {
+    const_iterator begin() const /*noexcept*/ {
       return m_points.cbegin();
     }
 
@@ -362,7 +362,7 @@ namespace tmx {
      *
      * @returns the end iterator
      */
-    const_iterator end() const noexcept {
+    const_iterator end() const /*noexcept*/ {
       return m_points.cend();
     }
 

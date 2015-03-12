@@ -48,7 +48,7 @@ namespace tmx {
      *
      * @return the color to display the objects
      */
-    const std::string& getColor() noexcept {
+    const std::string& getColor() /*noexcept*/ {
       return m_color;
     }
 
@@ -71,7 +71,7 @@ namespace tmx {
      *
      * @return the begin iterator
      */
-    const_iterator begin() const noexcept {
+    const_iterator begin() const /*noexcept*/ {
       return boost::make_transform_iterator<Adaptor>(m_objects.cbegin());
     }
 
@@ -80,7 +80,7 @@ namespace tmx {
      *
      * @return the end iterator
      */
-    const_iterator end() const noexcept {
+    const_iterator end() const /*noexcept*/ {
       return boost::make_transform_iterator<Adaptor>(m_objects.cend());
     }
 

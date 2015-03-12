@@ -40,7 +40,7 @@ namespace tmx {
      *
      * @returns the name of the terrain
      */
-    const std::string& getName() const noexcept {
+    const std::string& getName() const /*noexcept*/ {
       return m_name;
     }
 
@@ -49,7 +49,7 @@ namespace tmx {
      *
      * @returns the representing tile
      */
-    unsigned getTile() const noexcept {
+    unsigned getTile() const /*noexcept*/ {
       return m_tile;
     }
 

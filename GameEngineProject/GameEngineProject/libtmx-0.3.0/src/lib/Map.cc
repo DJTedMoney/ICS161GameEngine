@@ -19,7 +19,7 @@
 
 namespace tmx {
 
-  const TileSet *Map::getTileSetFromGID(unsigned gid) const noexcept {
+  const TileSet *Map::getTileSetFromGID(unsigned gid) const /*noexcept*/ {
     for (auto tileset : getTileSets() | boost::adaptors::reversed) {
       if (tileset->getFirstGID() <= gid) {
         return tileset;
