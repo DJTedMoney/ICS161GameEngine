@@ -2,11 +2,11 @@
 
 #include <tmx/Map.h>
 
-// SDL_Color
-#include <SDL_pixels.h>
+#include <SDL.h>
 
 #include <memory>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 class Layer
@@ -27,7 +27,7 @@ class Map
 {
 public:
     Map() = default;
-    Map(const std::string& file_path);
+    Map(SDL_Renderer* p_renderer, const std::string& file_path);
 
     void readFile(const std::string& file_path);
 
@@ -42,5 +42,11 @@ public:
     std::vector<Layer> getLayers() const;
 
 private:
+    using SurfacePtr = std::unique_ptr<SDL_Surface, decltype(&SDL_FreeSurface)>;
+    void loadTileSets();
+    SurfacePtr loadImage(const std::string& image_path) const;
+
+    SDL_Renderer *p_renderer_;
     std::unique_ptr<tmx::Map> p_map_;
+    std::unordered_map<const tmx::TileSet*, SurfacePtr> tile_set_surfaces_;
 };

@@ -1,9 +1,12 @@
 #include "Map.h"
 
+#include <SDL.h>
+
 #include <iostream>
 
 int main()
 {
+    SDL_Init(SDL_INIT_EVERYTHING);
     Map map;
     try
     {

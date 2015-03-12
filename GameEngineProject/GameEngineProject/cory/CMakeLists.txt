@@ -10,11 +10,12 @@ set(LIBRARY_NAME ${PROJECT_NAME})
 include(FindPkgConfig)
 foreach(pkg
     sdl2
+    SDL2_image
 )
     pkg_search_module(${pkg} REQUIRED ${pkg})
 endforeach()
 
-include_directories(${sdl2_INCLUDE_DIRS})
+include_directories(${sdl2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS})
 
 add_library(${LIBRARY_NAME}
     Map.cpp
@@ -24,6 +25,8 @@ find_package(Boost COMPONENTS filesystem system)
 target_link_libraries(${LIBRARY_NAME}
     ${Boost_FILESYSTEM_LIBRARY}
     ${Boost_SYSTEM_LIBRARY}
+    ${sdl2_LIBRARIES}
+    ${SDL2_image_LIBRARIES}
     ${OTHER_LIBRARIES}
 )
 
