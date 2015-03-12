@@ -185,7 +185,8 @@ int main(int, char**)
 		//SDL_RenderPresent(renderer);
 
 	}
-
+	
+	engine.events.terminateThread();
 	soundHandler->freeMusic();
 	Mix_Quit();
 	IMG_Quit();

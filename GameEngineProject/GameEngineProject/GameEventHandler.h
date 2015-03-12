@@ -29,6 +29,7 @@ public:
 	int GetNextEvent(GameEvent &ge);
 	void init();
 	void Update();
+	void terminateThread();
 
 
 private:

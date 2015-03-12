@@ -3,7 +3,10 @@
 GameEventHandler::GameEventHandler(){}
 
 
-GameEventHandler::~GameEventHandler(){}
+GameEventHandler::~GameEventHandler()
+{
+
+}
 
 void GameEventHandler::PushEvent(GameEvent e){
 	gameEventQueue.push(e);
@@ -14,6 +17,11 @@ void GameEventHandler::init()
 	//Starts a thread with update as it's function call. 
 	//If you want another function to be called just change the update
 	eventThread = std::thread(&GameEventHandler::Update , this);
+}
+
+void GameEventHandler::terminateThread()
+{
+	eventThread.join();
 }
 
 void GameEventHandler::Update(){
