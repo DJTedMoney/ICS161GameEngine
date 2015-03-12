@@ -29,11 +29,15 @@ enum EVENT_TYPE{
 	ENEMY_INJURED,
 
 	//8
-	ENEMY_DIED
+	ENEMY_DIED,
 
 	//9
+	COLLIDED,
 
 	//10
+	PAUSE
+
+	//11
 };
 
 class GameEvent{

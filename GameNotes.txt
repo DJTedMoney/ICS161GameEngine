@@ -1,0 +1,33 @@
+Need to make a few subclasses of Actor:
+
+
+TriggerPoint
+
+Character:
+	Enemy - will be a zergling and a boss
+	Player
+
+
+
+
+
+
+
+
+
+
+
+
+
+Structure
+
+Game loop:
+
+Main -> Game().init()-> Game().update() -> Game.draw()
+
+//Init() - This is where you initialize anything you need for later use.
+//Load anything/do SDL stuff here
+
+//update() - The heart of your code goes here. Move positions, play sounds, ect
+
+//draw() - set up any drawing to screen here

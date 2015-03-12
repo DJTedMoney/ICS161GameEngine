@@ -5,6 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
+*.tlog
 
 # Build results
 
@@ -153,3 +154,5 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+*.tlog
+*.tlog

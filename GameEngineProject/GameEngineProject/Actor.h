@@ -1,19 +1,26 @@
 #pragma once
-#include "SpriteHandler.h"
+#include "Sprite.h"
 #include <string>
 #include <map>
 
 class Actor {
 public:
-	Actor(SpriteHandler* sprite, bool isInteractable, int x, int y);
+	Actor(Sprite* sprite, int x, int y, std::string name, bool isInteractable=true);
+	Actor(int x, int y, std::string name, bool isInteractable=true);
 	~Actor();
 
 	// Sprite
-	void setSprite(SpriteHandler* new_sprite);
+	void setSprite(Sprite* new_sprite);
+	Sprite& getSprite();
 
-	// Positioning
+	// Positioning and Dimensions
 	void moveAbsolute(int new_x, int new_y);
-	void moveRelative(int deltaX, int deltaY);
+	void movex(int delta);
+	void movey(int delta);
+	int getX();
+	int getY();
+	int getWidth();
+	int getHeight();
 
 	// Interactability 
 	bool isInteractable(); // returns interactable var
@@ -32,15 +39,21 @@ public:
 	void executeAI( void (*func)() ); // takes function pointer
 
 	// Collision
-	void detectCollision();
+	bool checkCollision(SDL_Rect& a, SDL_Rect& b);
+
+	//hitbox
+	SDL_Rect mColliders;
 
 private:
-	SpriteHandler* sprite; 
+	Sprite* sprite; 
 
 	std::map<std::string, std::string> attributes; //key-value pairs describing attributes of the actor
 
 	int x;
 	int y;
+	int width;
+	int height;
+
 	std::string name; // identifier
 	bool interactable; // can we interact with this object/entity?
 };

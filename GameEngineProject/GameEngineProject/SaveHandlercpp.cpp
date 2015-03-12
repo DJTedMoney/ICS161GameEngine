@@ -3,8 +3,6 @@
 
 SaveHandler* SaveHandler::instance;
 
-
-
 SaveHandler* SaveHandler::getInstance()
 {
 	if (!instance)
@@ -40,16 +38,9 @@ bool SaveHandler::open(std::string pathToFile)
 	return true;
 }
 
-SDL_Texture* SaveHandler::loadTexture(const std::string &file, SDL_Renderer *ren)
+bool SaveHandler::init()
 {
-	SDL_Texture *texture = IMG_LoadTexture(ren, file.c_str());
-
-	if (texture == nullptr)
-	{
-		std::cout << "LoadTexture Error: " << SDL_GetError() << std::endl;
-	}
-
-	return texture;
+	return true;
 }
 
 bool SaveHandler::load()

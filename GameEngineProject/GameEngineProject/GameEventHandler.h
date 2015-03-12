@@ -2,7 +2,8 @@
 #include <string>
 #include <queue>
 #include "GameEvent.h"
-#include "SDL_events.h"
+#include <thread> 
+//#include "SDL_events.h"
 
 
 
@@ -10,6 +11,8 @@
 	//a way for game functions to be able to listen for events
 	//a way to notify the game functions of an event that happened
 
+
+//add an Update() function: pops off the head of the queue
 
 class GameEventHandler
 {
@@ -24,10 +27,14 @@ public:
 
 	//get next event
 	int GetNextEvent(GameEvent &ge);
+	void init();
+	void Update();
+	void terminateThread();
 
 
 private:
 
+	std::thread eventThread;
 	std::queue<GameEvent>  gameEventQueue;
 	void Pop_Event();
 };

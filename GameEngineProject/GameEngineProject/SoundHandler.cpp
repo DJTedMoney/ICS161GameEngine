@@ -35,30 +35,76 @@ SoundHandler::~SoundHandler()
 void SoundHandler::loadSound(std::string fileName, std::string type)
 {
 	std::string fullPath = MUS_RES_PATH + fileName;
-	sound = Mix_LoadWAV(fullPath.c_str());
 
 	std::cout << "The full path: " + fullPath << "\n";
 
-	if (sound == NULL)
+	if (type == SFX)
+	{
+		sfxSound = Mix_LoadWAV(fullPath.c_str());
+		sfxList[fileName] = sfxSound;
+	}
+	else if (type == MUSIC)
+	{
+		musicSound = Mix_LoadMUS(fullPath.c_str());
+		musicList[fileName] = musicSound;
+	}
+
+	if (sfxSound == NULL && musicSound == NULL )
 	{
 		std::cout << fileName << " has NOT been sucessfully loaded." << "\n";
+		sfxSound = NULL;
 	}
 	else
 	{
 		std::cout << fileName << " has been sucessfully loaded." << "\n";
+		musicSound = NULL;
+	}
+
+
+
+}
+
+void SoundHandler::playSound(std::string toPlay, std::string type)
+{
+
+	if (type == "SFX")
+	{
+		Mix_PlayChannel(-1, sfxList[toPlay], 0);
+	}
+	else if (type == "MUSIC")
+	{
+		Mix_PlayMusic(musicList[toPlay], -1);
 	}
 	
 
 }
 
-void SoundHandler::playSound(std::string toPlay)
+void SoundHandler::pauseSound()
 {
-	Mix_PlayChannel(-1, sound, 0);
+	if (Mix_PlayingMusic)
+	{
+		Mix_PauseMusic();
+	}
+}
+
+void SoundHandler::resumeSound()
+{
+	if (Mix_PausedMusic() == 1)
+	{
+		Mix_ResumeMusic();
+	}
+}
+
+void SoundHandler::stopAllSound()
+{
+	Mix_HaltMusic();
 }
 
 void SoundHandler::freeMusic()
 {
-	Mix_FreeChunk(sound);
-	sound = NULL;
+	Mix_FreeChunk(sfxSound);
+	Mix_FreeMusic(musicSound);
+	sfxSound = NULL;
+	musicSound = NULL;
 }
 
