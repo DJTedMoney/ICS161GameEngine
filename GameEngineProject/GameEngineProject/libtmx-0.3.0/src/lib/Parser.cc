@@ -284,7 +284,7 @@ namespace tmx {
         z_stream stream;
         std::memset(&stream, 0, sizeof(stream));
 
-        stream.next_in = input.data();
+        stream.next_in = const_cast<uint8_t*>(input.data());
         stream.avail_in = input.size();
         stream.zalloc = Z_NULL;
         stream.zfree = Z_NULL;
