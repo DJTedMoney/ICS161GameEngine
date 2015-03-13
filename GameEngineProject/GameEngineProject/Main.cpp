@@ -44,8 +44,8 @@ int main(int, char**)
 	SoundHandler *soundHandler = new SoundHandler(Camera::getInstance()->musResPath);
 
 	//Music Loading
-	//soundHandler->loadSound("05 Intruder 1.mp3", "MUSIC");
-	//soundHandler->playSound("05 Intruder 1.mp3", "MUSIC");
+	soundHandler->loadSound("05 Intruder 1.mp3", "MUSIC");
+	soundHandler->playSound("05 Intruder 1.mp3", "MUSIC");
 
 	//Image Loading
 	const std::string resPath = Camera::getInstance()->resPath;
