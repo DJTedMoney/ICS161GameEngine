@@ -35,9 +35,6 @@ public:
 	std::string getAttribute(std::string key);
 	void removeAttribute(std::string key);
 
-	// AI
-	void executeAI( void (*func)() ); // takes function pointer
-
 	// Collision
 	bool checkCollision(SDL_Rect& a, SDL_Rect& b);
 

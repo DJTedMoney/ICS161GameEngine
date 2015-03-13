@@ -32,6 +32,7 @@ void Actor::moveAbsolute(int new_x, int new_y) {
 void Actor::movey(int delta){
 	y += delta;
 	mColliders.y = y;
+	sprite->movey(delta);
 	//if ((y < 0) || (y + height > Screen_height)  ){
 	//	movey(-delta, Screen_height);
 	//	mColliders.y = y;
@@ -41,6 +42,7 @@ void Actor::movey(int delta){
 void Actor::movex(int delta){
 	x += delta;
 	mColliders.x = x;
+	sprite->movex(delta);
 	//if ((x < 0) || (x + width > Screen_width) ){
 	//	movex(-delta, Screen_width);
 	//	mColliders.x = x;
@@ -88,10 +90,6 @@ std::string Actor::getAttribute(std::string key) {
 
 void Actor::removeAttribute(std::string key) {
 	attributes.erase(key);
-}
-
-void Actor::executeAI(void(*func)()) {
-
 }
 
 bool Actor::checkCollision(SDL_Rect& a, SDL_Rect& b)
