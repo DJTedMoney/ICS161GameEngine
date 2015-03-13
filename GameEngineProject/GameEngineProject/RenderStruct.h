@@ -4,6 +4,6 @@
 struct DisplayRenderer
 {
 	SDL_Texture* texture;
-	SDL_Rect* src;
-	SDL_Rect* dst;
+	SDL_Rect src;
+	SDL_Rect dst;
 };

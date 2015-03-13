@@ -135,8 +135,8 @@ DisplayRenderer Sprite::show(int frameIndex)
 
 	DisplayRenderer toReturn;
 	toReturn.texture = frames[frameIndex].texture;
-	toReturn.dst = &dst;
-	toReturn.src = &src;
+	toReturn.dst = dst;
+	toReturn.src = src;
 	//SDL_RenderCopy(this->renderer, frames[frameIndex].texture, &src, &dst);
 	return toReturn;
 }

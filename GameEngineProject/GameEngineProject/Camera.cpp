@@ -94,13 +94,7 @@ void Camera::graduallyMoveScreenTo(int x, int y)
 	int picWidth = 0;
 	int picHeight = 0;
 	SDL_QueryTexture(background, NULL, NULL, &picWidth, &picHeight);
-	//Check to see if either x/y are negative to move in the proper direction
-	//if (!movingScreen)
-	//{
-	//	moveToX =  x - SCREEN_WIDTH/2;
-	//	moveToY =  y - SCREEN_WIDTH/2;
-	//	movingScreen = true;
-	//}
+
 	if (displayArea.x + x < 0){displayArea.x = 0;}
 	else if (displayArea.x + x > picWidth - SCREEN_WIDTH){ displayArea.x = picWidth - SCREEN_WIDTH; }
 	else{displayArea.x += x;}
@@ -170,7 +164,8 @@ void Camera::copyToRenderer()
 	for (auto& add: toRender)
 	{
 		temp = add;
-		SDL_RenderCopy(renderer, add->texture,add->src,&displayArea);
+		if (temp->texture != NULL)
+			SDL_RenderCopy(renderer, add->texture, &add->src,&add->src);
 	}
 }
 
@@ -188,6 +183,7 @@ void Camera::draw()
 {
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, background, &displayArea, NULL);
+	copyToRenderer();
 	SDL_RenderPresent(renderer);
 }
 
