@@ -8,6 +8,8 @@
 *.tlog
 
 # Build results
+Debug/
+Release/
 
 
 x64/

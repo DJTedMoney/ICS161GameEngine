@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\tmx">
+      <UniqueIdentifier>{4457c871-3e99-4f5e-862f-44d2e5b86d4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\boost">
+      <UniqueIdentifier>{befd3c5a-dbd5-463c-b048-cc9dfbee9d5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\boost\filesystem">
+      <UniqueIdentifier>{2538dc9c-1fc4-4ab7-ae14-969183b4ea32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\boost\system">
+      <UniqueIdentifier>{dda4c7a8-ee6b-4939-ab1a-4ccaaa5abd05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tinyxml2">
+      <UniqueIdentifier>{e560f47e-ae37-43a4-8538-127ecb888ef7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\zlib">
+      <UniqueIdentifier>{3883e66b-0fb7-41f4-97bf-25040abb66eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEvent.cpp">
@@ -44,6 +62,93 @@
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\TileSet.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\Component.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\Layers.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\LayerVisitor.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\Object.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\Parser.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\codecvt_error_category.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\operations.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\path.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\path_traits.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\portability.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\unique_path.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\utf8_codecvt_facet.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\windows_file_codecvt.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\system\src\error_code.cpp">
+      <Filter>Source Files\boost\system</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\TmxMap.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2-2.2.0\tinyxml2.cpp">
+      <Filter>Source Files\tinyxml2</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\adler32.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\compress.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\crc32.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\deflate.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\infback.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\inffast.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\inflate.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\inftrees.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\trees.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\uncompr.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib-1.2.8\zutil.c">
+      <Filter>Source Files\zlib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +202,12 @@
     </ClInclude>
     <ClInclude Include="RenderStruct.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="boost_1_57_0\libs\filesystem\src\windows_file_codecvt.hpp">
+      <Filter>Source Files\boost\filesystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
