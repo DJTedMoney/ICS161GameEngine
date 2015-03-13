@@ -20,7 +20,7 @@ public:
 	void resumeSound();
 	void stopAllSound();
 	void freeMusic();
-	void listenForEvent(SDL_Event);
+	void listenForEvent(SDL_Event e);
 	const std::string MUSIC = "MUSIC";
 	const std::string SFX = "SFX";
 	

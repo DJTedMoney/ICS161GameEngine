@@ -41,14 +41,15 @@ int main(int, char**)
 
 	//SDL_SETRELATIVEMOUSEMODE
 	Game engine = Game();
-	SoundHandler *soundHandler = new SoundHandler(engine.mainCamera.musResPath);
+	SoundHandler *soundHandler = new SoundHandler(Camera::getInstance()->musResPath);
 
 	//Music Loading
 	soundHandler->loadSound("05 Intruder 1.mp3", "MUSIC");
+	soundHandler->playSound("05 Intruder 1.mp3", "MUSIC");
 
 	//Image Loading
-	const std::string resPath = engine.mainCamera.resPath;
-	SDL_Renderer *renderer = engine.mainCamera.renderer;
+	const std::string resPath = Camera::getInstance()->resPath;
+	SDL_Renderer *renderer = Camera::getInstance()->renderer;
 
 	SDL_Texture *marinezSS = loadTexture(resPath + "marinez 64px.png", renderer);
 	SDL_Texture *marinezSSF = loadTexture(resPath + "marinez 64px flip.png", renderer);
@@ -61,7 +62,7 @@ int main(int, char**)
 	Sprite *mainChar = new Sprite(64, 64, renderer);
 	Sprite *zealot = new Sprite(38, 40, renderer);
 	Sprite *zergling = new Sprite(39, 38, renderer);
-	Sprite* spriteBG = new Sprite(engine.mainCamera.SCREEN_WIDTH, engine.mainCamera.SCREEN_HEIGHT, renderer);
+	Sprite* spriteBG = new Sprite(Camera::getInstance()->SCREEN_WIDTH, Camera::getInstance()->SCREEN_HEIGHT, renderer);
 	spriteBG->setPos(0, 0);
 	int bgFrame = spriteBG->makeFrame(backgroundSS, 0, 0);
 
@@ -170,8 +171,8 @@ int main(int, char**)
 		zergling->addFrameToSequence("upLeft", zergling->makeFrame(zerglingSSF, 260, 2 + (42 * i)));
 	}
 
-	int x = engine.mainCamera.SCREEN_WIDTH / 2;
-	int y = engine.mainCamera.SCREEN_HEIGHT / 2;
+	int x = Camera::getInstance()->SCREEN_WIDTH / 2;
+	int y = Camera::getInstance()->SCREEN_HEIGHT / 2;
 	mainChar->setPos(x, y + -50);
 	zergling->setPos(x + 50, y);
 	zealot->setPos(x - 50, y + 50);
@@ -215,7 +216,11 @@ int main(int, char**)
 				{
 					engine.distributeSDLEvent(e);
 				}
-				else if (e.key.keysym.sym == SDLK_t)
+				else if (e.key.keysym.sym == SDLK_p)
+				{
+					engine.distributeSDLEvent(e);
+				}
+				else
 				{
 					engine.distributeSDLEvent(e);
 				}
@@ -226,11 +231,11 @@ int main(int, char**)
 		int xChange = 0, yChange = 0;
 		SDL_SetRelativeMouseMode(SDL_TRUE);
 		auto r = SDL_GetMouseState(&xChange, &yChange);
-		std::cout << "Relative move x/y: " << xChange << "," << yChange << std::endl;
+		//std::cout << "Relative move x/y: " << xChange << "," << yChange << std::endl;
 
 
 		if (xChange != 0 || yChange != 0)
-			engine.mainCamera.graduallyMoveScreenTo(xChange, yChange);
+			Camera::getInstance()->graduallyMoveScreenTo(xChange, yChange);
 
 		engine.update();
 		engine.draw();

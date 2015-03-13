@@ -10,13 +10,13 @@ class Camera
 {
 public: 
 
-	Camera();
 	~Camera();
+	static Camera* getInstance();
 
 	void update();
 	void draw();
 	//add parameters to allow for diffrent screen sizes ect
-	bool init(int width, int height);
+	bool init(int width, int height, std::string windowName);
 	bool setBackground(std::string myPath);
 
 	//Takes an x and a y amount to move the screen.
@@ -29,6 +29,7 @@ public:
 	void moveCameraDown();
 	void listenForEvent(SDL_Event e);
 	//Toggles between panning and not
+	void setMousePanning(bool isPanning);
 	void toggleMode();
 	void addRenderer(DisplayRenderer* myRender);
 	void copyTexture(SDL_Texture* toAdd);
@@ -46,6 +47,12 @@ private:
 
 	std::vector<DisplayRenderer*> toRender;
 	void copyToRenderer();
+
+	static Camera* instance;
+
+	Camera(const Camera&);
+	Camera& operator=(const Camera&);
+	Camera() {}
 
 	//Variables to move screen to given position
 	void moveCameraToPosition();

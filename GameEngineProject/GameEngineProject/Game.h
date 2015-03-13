@@ -17,12 +17,10 @@ public:
 	void draw();
 	void distributeSDLEvent(SDL_Event toDistribute);
 
-	bool isPaused;
 	GameEventHandler events;
-	bool gameIsRunning;
-	Camera mainCamera;
 	SoundHandler *soundPlayer;
+	bool gameIsRunning;
 	
 private:
-
+	bool isPaused;
 };

@@ -10,13 +10,13 @@ Game::Game()
 	SaveHandler::getInstance()->init();
 	events.init();
 
-	mainCamera.init(900, 600);
-	mainCamera.setBackground("background.png");
+	Camera::getInstance()->init(900, 600, "GameEngineProject");
+	Camera::getInstance()->setBackground("background2.png");
 }
 
 void Game::distributeSDLEvent(SDL_Event toDistribute)
 {
-	if (toDistribute.key.keysym.sym == SDLK_t)
+	if (toDistribute.key.keysym.sym == SDLK_p)
 	{
 		if (isPaused)
 			isPaused = false;
@@ -26,7 +26,8 @@ void Game::distributeSDLEvent(SDL_Event toDistribute)
 	
 	if (!isPaused)
 	{
-		mainCamera.listenForEvent(toDistribute);
+		Camera::getInstance()->listenForEvent(toDistribute);
+		soundPlayer->listenForEvent(toDistribute);
 	}
 		
 }
@@ -42,13 +43,13 @@ void Game::update()
 		return;
 	else
 	{
-		mainCamera.update();
+		Camera::getInstance()->update();
 	}
 }
 
 void Game::draw()
 {
 	if (!isPaused)
-		mainCamera.draw();
+		Camera::getInstance()->draw();
 }
 

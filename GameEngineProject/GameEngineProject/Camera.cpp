@@ -2,10 +2,15 @@
 #include "res_path.h"
 #include "cleanup.h"
 
-Camera::Camera()
-{
+Camera* Camera::instance;
 
+Camera* Camera::getInstance()
+{
+	if (!instance)
+		instance = new Camera;
+	return instance;
 }
+
 
 Camera::~Camera()
 {
@@ -14,29 +19,30 @@ Camera::~Camera()
 
 void Camera::listenForEvent(SDL_Event e)
 {
-	if (e.key.keysym.sym == SDLK_1)
+	if (e.key.keysym.sym == SDLK_m)
 	{
-		
+		isPanning = !isPanning;
 	}
-	else if (e.key.keysym.sym == SDLK_2)
+	else if (e.key.keysym.sym == SDLK_RIGHT)
 	{
-
+		moveCameraRight();
 	}
-	else if (e.key.keysym.sym == SDLK_3)
+	else if (e.key.keysym.sym == SDLK_LEFT)
 	{
-		
+		moveCameraLeft();
 	}
-	else if (e.key.keysym.sym == SDLK_4)
+	else if (e.key.keysym.sym == SDLK_UP)
 	{
-		
+		moveCameraUp();
 	}
-	else if (e.key.keysym.sym == SDLK_5)
+	else if (e.key.keysym.sym == SDLK_DOWN)
 	{
-		
+		moveCameraDown();
 	}
+	
 }
 
-bool Camera::init(int width, int height)
+bool Camera::init(int width, int height, std::string windowName)
 {
 	SCREEN_HEIGHT = height;
 	SCREEN_WIDTH = width;
@@ -48,7 +54,8 @@ bool Camera::init(int width, int height)
 
 	resPath = getResourcePath("Images");
 	musResPath = getResourcePath("Music");
-	window = SDL_CreateWindow("GameEngineProject", 400, 100, width,
+
+	window = SDL_CreateWindow(windowName.c_str(), 400, 100, width,
 		height, SDL_WINDOW_SHOWN);
 	if (window == nullptr)
 	{
@@ -69,7 +76,7 @@ bool Camera::init(int width, int height)
 
 bool Camera::setBackground(std::string imageName)
 {
-	const std::string resPath = getResourcePath("Images") + "background2.png";
+	const std::string resPath = getResourcePath("Images") + imageName;
 	background = IMG_LoadTexture(renderer, resPath.c_str());
 
 	if (background == nullptr)
@@ -150,6 +157,11 @@ void Camera::copyToRenderer()
 		temp = add;
 		SDL_RenderCopy(renderer, add->texture,add->src,&displayArea);
 	}
+}
+
+void Camera::setMousePanning(bool toSet)
+{
+	isPanning = toSet;
 }
 
 void Camera::toggleMode()
