@@ -90,20 +90,31 @@ bool Camera::setBackground(std::string imageName)
 
 void Camera::graduallyMoveScreenTo(int x, int y)
 {
+
+	int picWidth = 0;
+	int picHeight = 0;
+	SDL_QueryTexture(background, NULL, NULL, &picWidth, &picHeight);
 	//Check to see if either x/y are negative to move in the proper direction
-	if (!movingScreen)
-	{
-		moveToX =  x - SCREEN_WIDTH/2;
-		moveToY =  y - SCREEN_WIDTH/2;
-		movingScreen = true;
-	}
+	//if (!movingScreen)
+	//{
+	//	moveToX =  x - SCREEN_WIDTH/2;
+	//	moveToY =  y - SCREEN_WIDTH/2;
+	//	movingScreen = true;
+	//}
+	if (displayArea.x + x < 0){displayArea.x = 0;}
+	else if (displayArea.x + x > picWidth - SCREEN_WIDTH){ displayArea.x = picWidth - SCREEN_WIDTH; }
+	else{displayArea.x += x;}
+	
+	if (displayArea.y + y < 0){ displayArea.y = 0; }
+	else if (displayArea.y + y > picHeight - SCREEN_HEIGHT){ displayArea.y = picHeight - SCREEN_HEIGHT; }
+	else { displayArea.y += y; }
 }
 
 void Camera::moveCameraToPosition()
 {
 	//If x/y aren't at the given position then update them
-	currX += (moveToX - currX) / 15;
-	currY += (moveToY - currY) / 15;
+	currX += (moveToX - currX);
+	currY += (moveToY - currY);
 
 	if (currX < 0){ currX = 0; }
 	if (currY < 0){ currY = 0; }

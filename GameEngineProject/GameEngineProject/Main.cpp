@@ -195,20 +195,24 @@ int main(int, char**)
 				quit = true;
 			}
 
+			else if (e.type == SDL_MOUSEMOTION){
+				Camera::getInstance()->graduallyMoveScreenTo(e.motion.xrel, e.motion.yrel);
+			}
+
 			else{
 					engine.distributeSDLEvent(e);
 			}
 
 		}
 		//Render the scene
-		int xChange = 0, yChange = 0;
-		SDL_SetRelativeMouseMode(SDL_TRUE);
-		auto r = SDL_GetMouseState(&xChange, &yChange);
+		//int xChange = 0, yChange = 0;
+		//SDL_SetRelativeMouseMode(SDL_TRUE);
+	//	auto r = SDL_GetMouseState(&xChange, &yChange);
 		//std::cout << "Relative move x/y: " << xChange << "," << yChange << std::endl;
 
 
-		if (xChange != 0 || yChange != 0)
-			Camera::getInstance()->graduallyMoveScreenTo(xChange, yChange);
+		//if (xChange != 0 || yChange != 0)
+	//		Camera::getInstance()->graduallyMoveScreenTo(xChange, yChange);
 
 		engine.update();
 		engine.draw();
