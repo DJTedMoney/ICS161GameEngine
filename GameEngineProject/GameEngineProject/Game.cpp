@@ -14,8 +14,19 @@ Game::Game()
 
 void Game::distributeSDLEvent(SDL_Event toDistribute)
 {
-	//Call classes listenForSDLEvent that have one.
-	mainCamera.listenForEvent(toDistribute);
+	if (toDistribute.key.keysym.sym == SDLK_t)
+	{
+		if (isPaused)
+			isPaused = false;
+		else
+			isPaused = true;
+	}
+	
+	if (!isPaused)
+	{
+		mainCamera.listenForEvent(toDistribute);
+	}
+		
 }
 
 Game::~Game()
@@ -35,6 +46,7 @@ void Game::update()
 
 void Game::draw()
 {
-	mainCamera.draw();
+	if (!isPaused)
+		mainCamera.draw();
 }
 
