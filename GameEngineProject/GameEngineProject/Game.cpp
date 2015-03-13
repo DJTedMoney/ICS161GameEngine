@@ -28,6 +28,7 @@ void Game::distributeSDLEvent(SDL_Event toDistribute)
 	{
 		Camera::getInstance()->listenForEvent(toDistribute);
 		soundPlayer->listenForEvent(toDistribute);
+		//call player->PlayerInput(toDistribute); here
 	}
 		
 }

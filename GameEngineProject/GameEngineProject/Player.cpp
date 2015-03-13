@@ -1,59 +1,81 @@
 #include "Player.h"
 
 //need to add a check: for LR, if previous was U/D, then combine. And vice versa.
-void Player::PlayerInput(){
+void Player::PlayerInput(SDL_Event &e){
 	
-	
-
-	SDL_Event e;
 	SDL_PollEvent(&e);
 
 
-	//there's probably a better way to do this:
-		//if (w key down && d key down) direction = up right, moveCharacter(1, -1))
+
+	//actually, this won't work at all.
+	//need to rewrite it using flags.
+	//at least that will make checking UL/UR easier.
 	if (e.type == SDL_KEYDOWN){
 		switch (e.key.keysym.sym){
 		
 		//left
 		case SDLK_a:
-			if (this->dir == CHARACTER_DIRECTION::UP){ this->dir = CHARACTER_DIRECTION::UP_LEFT; }
-			else if (this->dir == CHARACTER_DIRECTION::DOWN){ this->dir = CHARACTER_DIRECTION::DOWN_LEFT; }
-			else{ this->dir == CHARACTER_DIRECTION::LEFT; }
-			this->movex(-1);
+			left = true;
 			break;
 		
 		//right
 		case SDLK_d:
-			if (this->dir == CHARACTER_DIRECTION::UP){ this->dir = CHARACTER_DIRECTION::UP_RIGHT; }
-			else if (this->dir == CHARACTER_DIRECTION::DOWN){ this->dir = CHARACTER_DIRECTION::DOWN_RIGHT; }
-			else{ this->dir == CHARACTER_DIRECTION::RIGHT; }
-			this->movex(1);
+			right = true;
 			break;
 		
 		//up
 		case SDLK_w:
-			if (this->dir == CHARACTER_DIRECTION::LEFT){ this->dir = CHARACTER_DIRECTION::UP_LEFT; }
-			else if (this->dir == CHARACTER_DIRECTION::RIGHT){ this->dir = CHARACTER_DIRECTION::UP_RIGHT; }
-			else{ this->dir == CHARACTER_DIRECTION::UP; }
-			this->movey(-1);
+			up = true;
 			break;
 		
 		//down
 		case SDLK_s:
-			if (this->dir == CHARACTER_DIRECTION::LEFT){ this->dir = CHARACTER_DIRECTION::DOWN_LEFT; }
-			else if (this->dir == CHARACTER_DIRECTION::RIGHT){ this->dir = CHARACTER_DIRECTION::DOWN_RIGHT; }
-			else{ this->dir == CHARACTER_DIRECTION::DOWN; }
-			this->movey(1);
+			down = true;
 			break;
 
-
+		//attack
 		case SDLK_SPACE:
 			AttackEnemy();
 			break;
 		default:
 			break;
 		}
-	}
+	}//end SDL_KEYDOWN
+
+	else if (e.type == SDL_KEYUP){
+		switch (e.key.keysym.sym){
+			//left
+		case SDLK_a:
+			left = false;
+			break;
+
+			//right
+		case SDLK_d:
+			right = false;
+			break;
+
+			//up
+		case SDLK_w:
+			up = false;
+			break;
+
+			//down
+		case SDLK_s:
+			down = false;
+			break;
+		}
+	}//end SDL_KEYUP
+
+	if (up && down){  }
+	else if (left && right){  }
+	else if (up && left){ dir = CHARACTER_DIRECTION::UP_LEFT; movex(-1); movey(-1); }
+	else if (up && right){ dir = CHARACTER_DIRECTION::UP_RIGHT; movex(1); movey(-1); }
+	else if (down && left){ dir = CHARACTER_DIRECTION::DOWN_LEFT; movex(-1); movey(1); }
+	else if (down && right){ dir = CHARACTER_DIRECTION::DOWN_RIGHT; movex(1); movey(1); }
+	else if (left){ dir = CHARACTER_DIRECTION::LEFT; movex(-1); }
+	else if (right){ dir = CHARACTER_DIRECTION::RIGHT; movex(1); }
+	else if (up){ dir = CHARACTER_DIRECTION::UP; movey(-1); }
+	else if (down){ dir = CHARACTER_DIRECTION::DOWN; movey(1); }
 }
 
 void Player::AttackEnemy(){
