@@ -69,7 +69,7 @@ bool Camera::init(int width, int height)
 
 bool Camera::setBackground(std::string imageName)
 {
-	const std::string resPath = getResourcePath("Images") + "background.png";
+	const std::string resPath = getResourcePath("Images") + "background2.png";
 	background = IMG_LoadTexture(renderer, resPath.c_str());
 
 	if (background == nullptr)

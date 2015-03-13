@@ -2,8 +2,8 @@
 
 Game::Game()
 {
-	soundPlayer = SoundHandler(mainCamera.musResPath);
-	soundPlayer.loadSound("05 Intruder 1", "MUSIC");
+	//soundPlayer = new SoundHandler(mainCamera.musResPath);
+	//soundPlayer->loadSound("05 Intruder 1", "MUSIC");
 	gameIsRunning = true;
 	isPaused = false;
 	SDL_SetRelativeMouseMode(SDL_TRUE);

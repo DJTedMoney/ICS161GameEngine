@@ -44,16 +44,19 @@ int main(int, char**)
 	SoundHandler *soundHandler = new SoundHandler(engine.mainCamera.musResPath);
 
 	//Music Loading
-	//soundHandler->loadSound("05 Intruder 1.mp3", "MUSIC");
+	soundHandler->loadSound("05 Intruder 1.mp3", "MUSIC");
 
 	//Image Loading
 	const std::string resPath = engine.mainCamera.resPath;
 	SDL_Renderer *renderer = engine.mainCamera.renderer;
 
 	SDL_Texture *marinezSS = loadTexture(resPath + "marinez 64px.png", renderer);
+	SDL_Texture *marinezSSF = loadTexture(resPath + "marinez 64px flip.png", renderer);
 	SDL_Texture *zealotSS = loadTexture(resPath + "zealot.png", renderer);
+	SDL_Texture *zealotSSF = loadTexture(resPath + "zealot flip.png", renderer);
 	SDL_Texture *zerglingSS = loadTexture(resPath + "zergling.png", renderer);
-	SDL_Texture *backgroundSS = loadTexture(resPath + "background.png", renderer);
+	SDL_Texture *zerglingSSF = loadTexture(resPath + "zergling flip.png", renderer);
+	SDL_Texture *backgroundSS = loadTexture(resPath + "background2.png", renderer);
 
 	Sprite *mainChar = new Sprite(64, 64, renderer);
 	Sprite *zealot = new Sprite(38, 40, renderer);
@@ -83,6 +86,19 @@ int main(int, char**)
 	{
 		mainChar->addFrameToSequence("down", mainChar->makeFrame(marinezSS, 1024, 64 * i));
 	}
+	////MARINEZ FLIPPED
+	for (int i = 0; i < 13; i++)
+	{
+		mainChar->addFrameToSequence("downLeft", mainChar->makeFrame(marinezSSF, 256, 64 * i));
+	}
+	for (int i = 0; i < 13; i++)
+	{
+		mainChar->addFrameToSequence("left", mainChar->makeFrame(marinezSSF, 512, 64 * i));
+	}
+	for (int i = 0; i < 13; i++)
+	{
+		mainChar->addFrameToSequence("upLeft", mainChar->makeFrame(marinezSSF, 768, 64 * i));
+	}
 
 	///ZEALOT
 	for (int i = 0; i < 8; i++)
@@ -104,6 +120,19 @@ int main(int, char**)
 	for (int i = 0; i < 8; i++)
 	{
 		zealot->addFrameToSequence("down", zealot->makeFrame(zealotSS, 337, 2 + (44 * i)));
+	}
+	///ZEALOT FLIP
+	for (int i = 0; i < 8; i++)
+	{
+		zealot->addFrameToSequence("downLeft", zealot->makeFrame(zealotSSF, 85, 2 + (44 * i)));
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		zealot->addFrameToSequence("left", zealot->makeFrame(zealotSSF, 169, 2 + (44 * i)));
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		zealot->addFrameToSequence("upLeft", zealot->makeFrame(zealotSSF, 253, 2 + (44 * i)));
 	}
 
 	///ZERGLING
@@ -127,7 +156,19 @@ int main(int, char**)
 	{
 		zergling->addFrameToSequence("down", zergling->makeFrame(zerglingSS, 346, 2 + (42 * i)));
 	}
-
+	///ZERGLING FLIP
+	for (int i = 0; i < 8; i++)
+	{
+		zergling->addFrameToSequence("downLeft", zergling->makeFrame(zerglingSSF, 88, 2 + (42 * i)));
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		zergling->addFrameToSequence("left", zergling->makeFrame(zerglingSSF, 174, 2 + (42 * i)));
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		zergling->addFrameToSequence("upLeft", zergling->makeFrame(zerglingSSF, 260, 2 + (42 * i)));
+	}
 
 	int x = engine.mainCamera.SCREEN_WIDTH / 2;
 	int y = engine.mainCamera.SCREEN_HEIGHT / 2;

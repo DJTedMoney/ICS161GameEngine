@@ -29,6 +29,17 @@ SoundHandler::SoundHandler(std::string musResPath)
 
 SoundHandler::~SoundHandler()
 {
+	for (std::map<std::string, Mix_Music*>::iterator it = musicList.begin(); it != musicList.end(); it++)
+	{
+		delete it->second;
+		musicList.clear();
+	}
+
+	for (std::map<std::string, Mix_Chunk*>::iterator it = sfxList.begin(); it != sfxList.end(); it++)
+	{
+		delete it->second;
+		sfxList.clear();
+	}
 
 }
 

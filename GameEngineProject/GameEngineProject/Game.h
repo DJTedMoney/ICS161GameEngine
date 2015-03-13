@@ -21,7 +21,7 @@ public:
 	GameEventHandler events;
 	bool gameIsRunning;
 	Camera mainCamera;
-	SoundHandler soundPlayer;
+	SoundHandler *soundPlayer;
 	
 private:
 
