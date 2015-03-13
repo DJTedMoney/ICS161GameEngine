@@ -15,25 +15,28 @@ public:
     int getX() const { return x_; }
     int getY() const { return y_; }
     bool isWall() const { return is_wall_; }
-    SDL_Surface *getSurface() const { return p_surface_; }
-    int getSurfaceOffsetX() const { return surface_offset_x_; }
-    int getSurfaceOffsetY() const { return surface_offset_y_; }
+    SDL_Texture *getTexture() const { return p_texture_; }
+    int getTextureOffsetX() const { return texture_offset_x_; }
+    int getTextureOffsetY() const { return texture_offset_y_; }
+
+	void draw(int screenMapX, int screenMapY) const;
 
 private:
     friend class Map;
+	Map *p_map_ = nullptr;
     int x_ = 0;
     int y_ = 0;
     bool is_wall_ = false;
-    SDL_Surface *p_surface_ = nullptr;
-    int surface_offset_x_ = 0;
-    int surface_offset_y_ = 0;
+    SDL_Texture *p_texture_ = nullptr;
+    int texture_offset_x_ = 0;
+    int texture_offset_y_ = 0;
 };
 
 class Map
 {
 public:
     Map() = default;
-    Map(SDL_Renderer* p_renderer, const std::string& file_path);
+    Map(SDL_Renderer *p_renderer, const std::string& file_path);
 
     void readFile(const std::string& file_path);
 
@@ -48,17 +51,22 @@ public:
     bool isInMap(int x, int y) const;
     const Cell& getCell(int x, int y) const;
 
+	void draw(int screenOffsetX, int screenOffsetY) const;
+
 private:
-    using SurfacePtr = std::unique_ptr<SDL_Surface, decltype(&SDL_FreeSurface)>;
+	friend class Cell;
+
+    using TexturePtr = std::unique_ptr<SDL_Texture, decltype(&SDL_DestroyTexture)>;
 
     Cell& getCell_(int x, int y);
 
     void loadTileSets();
     void loadCells();
-    SurfacePtr loadImage(const std::string& image_path) const;
+    TexturePtr loadImage(const std::string& image_path) const;
 
-    SDL_Renderer *p_renderer_;
+	std::string res_path_;
+	SDL_Renderer *p_renderer_;
     std::unique_ptr<tmx::Map> p_map_;
-    std::unordered_map<const tmx::TileSet*, SurfacePtr> tile_set_surfaces_;
+    std::unordered_map<const tmx::TileSet*, TexturePtr> tile_set_textures_;
     std::vector<Cell> cells_;
 };

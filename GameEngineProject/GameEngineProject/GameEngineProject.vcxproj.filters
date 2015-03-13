@@ -150,6 +150,9 @@
     <ClCompile Include="zlib-1.2.8\zutil.c">
       <Filter>Source Files\zlib</Filter>
     </ClCompile>
+    <ClCompile Include="PathFinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SoundHandler.h">
@@ -208,6 +211,12 @@
     </ClInclude>
     <ClInclude Include="boost_1_57_0\libs\filesystem\src\windows_file_codecvt.hpp">
       <Filter>Source Files\boost\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapPathNode.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

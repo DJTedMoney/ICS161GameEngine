@@ -1,5 +1,7 @@
 #include "Map.h"
 
+#include "res_path.h"
+
 #include <tmx/TileLayer.h>
 
 #include <SDL_image.h>
@@ -8,21 +10,34 @@
 #include <sstream>
 #include <stdexcept>
 
-#pragma message("TODO REMOVE IOSTREAM")
-#include <iostream>
+void Cell::draw(int screenMapX, int screenMapY) const
+{
+	if (p_texture_ == nullptr)
+	{
+		// cell is empty; nothing to draw
+		return;
+	}
+	int tile_width = p_map_->getTileWidth();
+	int tile_height = p_map_->getTileHeight();
+	SDL_Rect src_rect{ texture_offset_x_, texture_offset_y_, tile_width, tile_height };
+	SDL_Rect dest_rect{ screenMapX + x_ * tile_width, screenMapY + y_ * tile_height, tile_width, tile_height };
+	SDL_RenderCopy(p_map_->p_renderer_, p_texture_, &src_rect, &dest_rect);
+}
 
-Map::Map(SDL_Renderer* p_renderer, const std::string& file_path)
-    : p_renderer_(p_renderer)
+Map::Map(SDL_Renderer *p_renderer, const std::string& file_path)
+    : res_path_(getResourcePath("map"))
+	, p_renderer_(p_renderer)
 {
     readFile(file_path);
 }
 
 void Map::readFile(const std::string& file_path)
 {
-    p_map_ = tmx::Map::parseFile(file_path);
+	std::string full_path = res_path_ + file_path;
+    p_map_ = tmx::Map::parseFile(full_path);
     if(p_map_ == nullptr)
     {
-        throw std::runtime_error("could not parse map " + file_path);
+        throw std::runtime_error("could not parse map " + full_path);
     }
     if(p_map_->getOrientation() != tmx::Orientation::ORTHOGONAL)
     {
@@ -31,15 +46,6 @@ void Map::readFile(const std::string& file_path)
 
     loadTileSets();
     loadCells();
-
-    for(int y = 0; y < getHeight(); ++y)
-    {
-        for(int x = 0; x < getWidth(); ++x)
-        {
-            auto& cell = getCell(x, y);
-            std::cout << "getCell(" << x << ", " << y << "): {x: " << cell.getX() << ", y: " << cell.getY() << ", is_wall: " << std::boolalpha << cell.isWall() << "}" << std::endl;
-        }
-    }
 }
 
 int Map::getWidth() const
@@ -124,6 +130,18 @@ const Cell& Map::getCell(int x, int y) const
     return const_cast<Map*>(this)->getCell_(x, y);
 }
 
+void Map::draw(int screenOffsetX, int screenOffsetY) const
+{
+	//TODO cull cells from outside viewport
+	for (int y = 0; y < getHeight(); ++y)
+	{
+		for (int x = 0; x < getWidth(); ++x)
+		{
+			getCell(x, y).draw(screenOffsetX, screenOffsetY);
+		}
+	}
+}
+
 Cell& Map::getCell_(int x, int y)
 {
     return cells_[y * getWidth() + x];
@@ -135,7 +153,8 @@ void Map::loadTileSets()
     {
         if(p_tileset->hasImage())
         {
-            tile_set_surfaces_.emplace(std::make_pair(p_tileset, loadImage(p_tileset->getImage()->getSource().string())));
+			std::string image_path = p_tileset->getImage()->getSource().string();
+			tile_set_textures_.emplace(std::make_pair(p_tileset, loadImage(image_path)));
         }
     }
 }
@@ -165,30 +184,26 @@ void Map::loadCells()
 
                 // store information in the Cell in our cells_
                 auto& cell = getCell_(x, y);
+				cell.p_map_ = this;
                 cell.x_ = x;
                 cell.y_ = y;
 
                 auto cell_gid = tmxCell.getGID();
                 auto p_tile_set = p_map_->getTileSetFromGID(cell_gid);
-                // if this cell is empty
-                if(p_tile_set == nullptr)
+                // if this cell is not empty
+                if(p_tile_set != nullptr)
                 {
-                    cell.p_surface_ = nullptr;
-                }
-                else
-                {
-                    // calculate surface offset
+                    // calculate texture offset
                     auto relative_gid = cell_gid - p_tile_set->getFirstGID();
-                    auto p_surface = tile_set_surfaces_.at(p_tile_set).get();
-                    unsigned int surface_w = static_cast<unsigned int>(p_surface->w);
-                    unsigned int surface_h = static_cast<unsigned int>(p_surface->h);
-                    auto coords = p_tile_set->getCoords(relative_gid, {surface_w, surface_h});
+                    auto p_texture = tile_set_textures_.at(p_tile_set).get();
+					int texture_w, texture_h;
+					SDL_QueryTexture(p_texture, nullptr, nullptr, &texture_w, &texture_h);
+                    auto coords = p_tile_set->getCoords(relative_gid, {static_cast<unsigned int>(texture_w), static_cast<unsigned int>(texture_h)});
 
                     cell.is_wall_ = is_wall;
-                    cell.p_surface_ = p_surface;
-                    cell.surface_offset_x_ = coords.x;
-                    cell.surface_offset_y_ = coords.y;
-                    //std::cout << "x: " << x << ", y: " << y << ", cell_gid: " << cell_gid << ", relative_gid:" << relative_gid << ", p_tile_set: " << p_tile_set << ", surface_w: " << surface_w << ", surface_h: " << surface_h << std::endl;
+                    cell.p_texture_ = p_texture;
+                    cell.texture_offset_x_ = coords.x;
+                    cell.texture_offset_y_ = coords.y;
                 }
 
                 ++i;
@@ -197,13 +212,15 @@ void Map::loadCells()
     }
 }
 
-auto Map::loadImage(const std::string& image_path) const -> SurfacePtr
+auto Map::loadImage(const std::string& image_path) const -> TexturePtr
 {
-    SurfacePtr result{IMG_Load(image_path.c_str()), &SDL_FreeSurface};
+	//std::string full_path = res_path_ + image_path;
+	auto& full_path = image_path;
+    TexturePtr result{IMG_LoadTexture(p_renderer_, full_path.c_str()), &SDL_DestroyTexture};
     if(result == nullptr)
     {
         std::ostringstream message;
-        message << "Map::loadImage(\"" << image_path << "\") error, cannot load image";
+        message << "Map::loadImage(\"" << full_path << "\") error, cannot load image";
         throw std::runtime_error(message.str());
     }
     return result;
