@@ -13,6 +13,10 @@ void ActorHandler::addActor(Sprite* sprite, int x, int y, std::string name, bool
 	actors[name] = a;
 }
 
+void ActorHandler::addActor(Actor* actor) {
+	actors[actor->getName()] = actor;
+}
+
 void ActorHandler::removeActor(std::string name) {
 	actors.erase(name);
 }

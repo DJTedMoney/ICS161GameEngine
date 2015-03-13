@@ -16,8 +16,8 @@ public:
 	~Sprite();
 
 	void setPos(int x, int y);
-	void movex(int delta, const int Screen_width);
-	void movey(int delta, const int Screen_height);
+	void movex(int delta);
+	void movey(int delta);
 	int getX();
 	int getY();
 	int getWidth();

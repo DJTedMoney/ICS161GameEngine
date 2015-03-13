@@ -10,6 +10,7 @@ public:
 	~ActorHandler();
 
 	void addActor(Sprite* sprite, int x, int y, std::string name, bool isInteractable);
+	void addActor(Actor* actor);
 
 	void removeActor(std::string name); // remove with actor's name
 	void removeActor(Actor actor);	// remove by retrieving actor's name from actor

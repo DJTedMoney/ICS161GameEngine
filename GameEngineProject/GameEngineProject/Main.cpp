@@ -128,12 +128,24 @@ int main(int, char**)
 		zergling->addFrameToSequence("down", zergling->makeFrame(zerglingSS, 346, 2 + (42 * i)));
 	}
 
+
 	int x = engine.mainCamera.SCREEN_WIDTH / 2;
 	int y = engine.mainCamera.SCREEN_HEIGHT / 2;
 	mainChar->setPos(x, y + -50);
 	zergling->setPos(x + 50, y);
 	zealot->setPos(x - 50, y + 50);
 
+	
+	// --------- ACTOR HANDLER --------- //
+	ActorHandler actorhandler();
+	actorhandler.addActor(mainChar, mainChar->getX(), mainChar->getY(), "player", true);
+	actorhandler.addActor(zealot, zealot->getX(), zealot->getY(), "zealot", true);
+	actorhandler.addActor(zerling, zerling->getX(), zerling->getY(), "zerling", true);
+	actorhandler.getActor("player").addAttribute("health","10");
+	std::cout << actorhandler.getActor("player").getAttribute("health"); << std::endl;
+
+
+	std::string playerDirection = "up";
 	std::string spriteDirection = "up";
 	SDL_Event e;
 	bool quit = false;
@@ -148,19 +160,27 @@ int main(int, char**)
 			if (e.type == SDL_KEYDOWN){
 				if (e.key.keysym.sym == SDLK_RIGHT)
 				{
-					engine.mainCamera.moveCameraRight();
+					// engine.mainCamera.moveCameraRight();
+					actorhandler.getActor("player").movex(5);
+					playerDirection = "right";
 				}
 				else if (e.key.keysym.sym == SDLK_LEFT)
 				{
-					engine.mainCamera.moveCameraLeft();
+					// engine.mainCamera.moveCameraLeft();
+					actorhandler.getActor("player").movex(-5);
+					playerDirection = "left";
 				}
 				else if (e.key.keysym.sym == SDLK_UP)
 				{
-					engine.mainCamera.moveCameraUp();
+					// engine.mainCamera.moveCameraUp();
+					actorhandler.getActor("player").movey(-5);
+					playerDirection = "up";
 				}
 				else if (e.key.keysym.sym == SDLK_DOWN)
 				{
-					engine.mainCamera.moveCameraDown();
+					// engine.mainCamera.moveCameraDown();
+					actorhandler.getActor("player").movey(5);
+					playerDirection = "down";
 				}
 			}
 
