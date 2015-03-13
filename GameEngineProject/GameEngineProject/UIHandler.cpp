@@ -5,16 +5,6 @@
 #include "Windows.h"
 #include "UIHandler.h"
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-
-/*void logSDLError(std::ostream &os, const std::string &msg) {
-	std::ostringstream errMsg;
-	errMsg << "message: " << msg << " error: " << SDL_GetError() << std::endl;
-	OutputDebugString(errMsg.str().c_str());
-	os << msg << " error: " << SDL_GetError() << std::endl;
-}*/
-
 UIHandler::UIHandler(SDL_Renderer* r, std::string fn, int fs) {
 	TTF_Init();
 
