@@ -47,18 +47,18 @@ void SoundHandler::listenForEvent(SDL_Event e)
 {
 	if (e.key.keysym.sym == SDLK_1)
 	{
-		loadSound("05 Intruder 1.mp3", "MUSIC");
-		playSound("05 Intruder 1.mp3", "MUSIC");
+		//loadSound("05 Intruder 1.mp3", "MUSIC");
+		//playSound("05 Intruder 1.mp3", "MUSIC");
 	}
 	else if (e.key.keysym.sym == SDLK_2)
 	{
-		loadSound("06 Encounter.mp3", "MUSIC");
-		playSound("06 Encounter.mp3", "MUSIC");
+		//loadSound("06 Encounter.mp3", "MUSIC");
+		//playSound("06 Encounter.mp3", "MUSIC");
 	}
 	else if (e.key.keysym.sym == SDLK_3)
 	{
-		loadSound("19 VR Training.mp3", "MUSIC");
-		playSound("19 VR Training.mp3", "MUSIC");
+		//loadSound("19 VR Training.mp3", "MUSIC");
+		//playSound("19 VR Training.mp3", "MUSIC");
 	}
 	else if (e.key.keysym.sym == SDLK_4)
 	{

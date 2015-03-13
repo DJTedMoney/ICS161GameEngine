@@ -11,9 +11,9 @@ Game::Game()
 	events.init();
 
 	Camera::getInstance()->init(900, 600, "GameEngineProject");
-	Camera::getInstance()->setBackground("background2.png");
+	//Camera::getInstance()->setBackground("background2.png");
+	Camera::getInstance()->setBackground("legend-of-zelda-map.png");
 }
-
 void Game::distributeSDLEvent(SDL_Event toDistribute)
 {
 	if (toDistribute.key.keysym.sym == SDLK_p)

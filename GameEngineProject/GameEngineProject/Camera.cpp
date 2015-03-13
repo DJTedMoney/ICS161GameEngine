@@ -105,6 +105,10 @@ void Camera::moveCameraToPosition()
 	currX += (moveToX - currX) / 15;
 	currY += (moveToY - currY) / 15;
 
+	if (currX < 0){ currX = 0; }
+	if (currY < 0){ currY = 0; }
+
+
 	movingScreen = false;
 	//Make new display rect
 	displayArea.x = currX + 10;

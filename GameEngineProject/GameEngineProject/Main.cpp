@@ -44,8 +44,8 @@ int main(int, char**)
 	SoundHandler *soundHandler = new SoundHandler(Camera::getInstance()->musResPath);
 
 	//Music Loading
-	soundHandler->loadSound("05 Intruder 1.mp3", "MUSIC");
-	soundHandler->playSound("05 Intruder 1.mp3", "MUSIC");
+	//soundHandler->loadSound("05 Intruder 1.mp3", "MUSIC");
+	//soundHandler->playSound("05 Intruder 1.mp3", "MUSIC");
 
 	//Image Loading
 	const std::string resPath = Camera::getInstance()->resPath;
@@ -195,35 +195,8 @@ int main(int, char**)
 				quit = true;
 			}
 
-			if (e.type == SDL_KEYDOWN){
-				if (e.key.keysym.sym == SDLK_RIGHT)
-				{
+			else{
 					engine.distributeSDLEvent(e);
-				}
-				else if (e.key.keysym.sym == SDLK_LEFT)
-				{
-					engine.distributeSDLEvent(e);
-				}
-				else if (e.key.keysym.sym == SDLK_UP)
-				{
-					engine.distributeSDLEvent(e);
-				}
-				else if (e.key.keysym.sym == SDLK_DOWN)
-				{
-					engine.distributeSDLEvent(e);
-				}
-				else if (e.key.keysym.sym == SDLK_m)
-				{
-					engine.distributeSDLEvent(e);
-				}
-				else if (e.key.keysym.sym == SDLK_p)
-				{
-					engine.distributeSDLEvent(e);
-				}
-				else
-				{
-					engine.distributeSDLEvent(e);
-				}
 			}
 
 		}
