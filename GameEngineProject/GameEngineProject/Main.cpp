@@ -5,6 +5,8 @@
 #include <SDL_ttf.h>
 
 #include "Map.h"
+#include "PathFinder.h"
+#include "MapPathNode.h"
 #include "SoundHandler.h"
 #include "Game.h"
 #include "Sprite.h"
@@ -53,6 +55,11 @@ int main(int, char**)
 
 		Map map(renderer, "map.tmx");
 		std::cout << "loaded map; size: { " << map.getWidth() << ", " << map.getHeight() << "}" << std::endl;
+		int pathFindStartX = 0;
+		int pathFindStartY = 0;
+		int pathFindGoalX = 0;
+		int pathFindGoalY = 0;
+		PathFinder<MapPathNode, MapHeuristic> pathFinder(MapPathNode{ &map, pathFindStartX, pathFindStartY });
 
 		SDL_Texture *marinezSS = loadTexture(resPath + "marinez 64px.png", renderer);
 		SDL_Texture *zealotSS = loadTexture(resPath + "zealot.png", renderer);
@@ -166,8 +173,43 @@ int main(int, char**)
 					{
 						engine.mainCamera.moveCameraDown();
 					}
+					else if (e.key.keysym.sym == SDLK_w)
+					{
+						int newPathFindGoalX = pathFindGoalX;
+						int newPathFindGoalY = pathFindGoalY - 1;
+						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) && !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()) {
+							pathFindGoalX = newPathFindGoalX;
+							pathFindGoalY = newPathFindGoalY;
+						}
+					}
+					else if (e.key.keysym.sym == SDLK_a)
+					{
+						int newPathFindGoalX = pathFindGoalX - 1;
+						int newPathFindGoalY = pathFindGoalY;
+						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) && !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()) {
+							pathFindGoalX = newPathFindGoalX;
+							pathFindGoalY = newPathFindGoalY;
+						}
+					}
+					else if (e.key.keysym.sym == SDLK_s)
+					{
+						int newPathFindGoalX = pathFindGoalX;
+						int newPathFindGoalY = pathFindGoalY + 1;
+						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) && !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()) {
+							pathFindGoalX = newPathFindGoalX;
+							pathFindGoalY = newPathFindGoalY;
+						}
+					}
+					else if (e.key.keysym.sym == SDLK_d)
+					{
+						int newPathFindGoalX = pathFindGoalX + 1;
+						int newPathFindGoalY = pathFindGoalY;
+						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) && !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()) {
+							pathFindGoalX = newPathFindGoalX;
+							pathFindGoalY = newPathFindGoalY;
+						}
+					}
 				}
-
 			}
 			//Render the scene
 			int xChange = 0, yChange = 0;
@@ -182,6 +224,19 @@ int main(int, char**)
 			//engine.update();
 			//engine.draw();
 			map.draw(0, 0);
+			auto path = pathFinder.get_optimal_path(MapPathNode{ &map, pathFindGoalX, pathFindGoalY });
+			std::cout << "path: ";
+			if (path == boost::none)
+			{
+				std::cout << "none";
+			}
+			for (auto& node : path.get())
+			{
+				std::cout << node << " -> ";
+				zealot->setPos(node.get_x() * map.getTileWidth(), node.get_y() * map.getTileHeight());
+				zealot->show(0);
+			}
+			std::cout << std::endl;
 			SDL_RenderPresent(renderer);
 
 			//SDL_RenderClear(renderer);
