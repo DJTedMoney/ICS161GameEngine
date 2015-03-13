@@ -12,6 +12,30 @@ Camera::~Camera()
 	cleanup(background, renderer, window);
 }
 
+void Camera::listenForEvent(SDL_Event e)
+{
+	if (e.key.keysym.sym == SDLK_RIGHT)
+	{
+		moveCameraRight();
+	}
+	else if (e.key.keysym.sym == SDLK_LEFT)
+	{
+		moveCameraLeft();
+	}
+	else if (e.key.keysym.sym == SDLK_UP)
+	{
+		moveCameraUp();
+	}
+	else if (e.key.keysym.sym == SDLK_DOWN)
+	{
+		moveCameraDown();
+	}
+	else if (e.key.keysym.sym == SDLK_m)
+	{
+		toggleMode();
+	}
+}
+
 bool Camera::init(int width, int height)
 {
 	SCREEN_HEIGHT = height;
@@ -20,10 +44,11 @@ bool Camera::init(int width, int height)
 	currY = 0;
 	movingScreen = false;
 	displayArea = { 0, 0, width, height };
+	isPanning = false;
 
 	resPath = getResourcePath("Images");
 	musResPath = getResourcePath("Music");
-	window = SDL_CreateWindow("GameEngineProject", 800, 100, width,
+	window = SDL_CreateWindow("GameEngineProject", 400, 100, width,
 		height, SDL_WINDOW_SHOWN);
 	if (window == nullptr)
 	{
@@ -45,7 +70,6 @@ bool Camera::init(int width, int height)
 bool Camera::setBackground(std::string imageName)
 {
 	const std::string resPath = getResourcePath("Images") + "background.png";
-
 	background = IMG_LoadTexture(renderer, resPath.c_str());
 
 	if (background == nullptr)
@@ -74,19 +98,17 @@ void Camera::moveCameraToPosition()
 	currX += (moveToX - currX) / 15;
 	currY += (moveToY - currY) / 15;
 
-	//Check to see if x and y have gone past their x/y
-	
-
 	movingScreen = false;
 	//Make new display rect
-	displayArea.x = currX;
-	displayArea.y = currY;
+	displayArea.x = currX + 10;
+	displayArea.y = currY + 10;
 }
 
 void Camera::update()
 {
-	if (movingScreen)
-		moveCameraToPosition();
+	if (isPanning)
+		if (movingScreen)
+			moveCameraToPosition();
 	//If some event calls for it change Camera position or other actions
 }
 
@@ -115,16 +137,30 @@ void Camera::addRenderer(DisplayRenderer* myRend)
 	toRender.push_back(myRend);
 }
 
+void Camera::copyTexture(SDL_Texture* toAdd)
+{
+	SDL_RenderCopy(renderer, toAdd,NULL, &displayArea);
+}
+
 void Camera::copyToRenderer()
 {
+	DisplayRenderer* temp;
 	for (auto& add: toRender)
 	{
+		temp = add;
 		SDL_RenderCopy(renderer, add->texture,add->src,&displayArea);
 	}
 }
 
+void Camera::toggleMode()
+{
+	isPanning = !isPanning;
+}
+
 void Camera::draw()
 {
-	SDL_RenderCopy(renderer, background, NULL, &displayArea);
+	SDL_RenderClear(renderer);
+	SDL_RenderCopy(renderer, background, &displayArea, NULL);
 	SDL_RenderPresent(renderer);
 }
+

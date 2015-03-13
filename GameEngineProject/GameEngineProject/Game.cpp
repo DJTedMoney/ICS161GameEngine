@@ -8,13 +8,14 @@ Game::Game()
 	SaveHandler::getInstance()->init();
 	events.init();
 
-	mainCamera.init(640, 480);
+	mainCamera.init(900, 600);
 	mainCamera.setBackground("background.png");
 }
 
 void Game::distributeSDLEvent(SDL_Event toDistribute)
 {
 	//Call classes listenForSDLEvent that have one.
+	mainCamera.listenForEvent(toDistribute);
 }
 
 Game::~Game()
@@ -28,7 +29,6 @@ void Game::update()
 		return;
 	else
 	{
-		//Call peoples updates.
 		mainCamera.update();
 	}
 }

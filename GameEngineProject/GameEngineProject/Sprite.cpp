@@ -137,7 +137,7 @@ DisplayRenderer Sprite::show(int frameIndex)
 	toReturn.texture = frames[frameIndex].texture;
 	toReturn.dst = &dst;
 	toReturn.src = &src;
-	SDL_RenderCopy(this->renderer, frames[frameIndex].texture, &src, &dst);
+	//SDL_RenderCopy(this->renderer, frames[frameIndex].texture, &src, &dst);
 	return toReturn;
 }
 
@@ -145,8 +145,8 @@ DisplayRenderer Sprite::show(std::string sequence)
 {
 	if (sequenceIndex < sequenceList[sequence].size()-1)
 	{
-		return show(sequenceList[sequence][sequenceIndex]);
 		sequenceIndex++;
+		return show(sequenceList[sequence][sequenceIndex]);
 	}
 	//else if (sequenceList[sequence].size()-1 == sequenceIndex){
 	//	show(sequenceList[sequence][0]);

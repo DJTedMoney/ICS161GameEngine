@@ -4,6 +4,7 @@
 #include "SaveHandler.h"
 #include <vector>;
 #include "RenderStruct.h"
+#include "Sprite.h"
 
 class Camera
 {
@@ -26,7 +27,11 @@ public:
 	void moveCameraLeft();
 	void moveCameraUp();
 	void moveCameraDown();
+	void listenForEvent(SDL_Event e);
+	//Toggles between panning and not
+	void toggleMode();
 	void addRenderer(DisplayRenderer* myRender);
+	void copyTexture(SDL_Texture* toAdd);
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
@@ -38,10 +43,13 @@ public:
 	int SCREEN_HEIGHT;
 
 private:
+
 	std::vector<DisplayRenderer*> toRender;
 	void copyToRenderer();
+
 	//Variables to move screen to given position
 	void moveCameraToPosition();
+	bool isPanning;
 	SDL_Rect displayArea;
 	SDL_Rect movedCamera;
 	bool movingScreen;
