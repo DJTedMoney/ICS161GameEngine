@@ -67,7 +67,7 @@ bool Sprite::checkCollision(SDL_Rect& a, SDL_Rect& b)
 }
 
 
-void Sprite::movey(int delta, const int Screen_height)
+void Sprite::movey(int delta)
 {
 	currY += delta;
 	mColliders.y = currY;
@@ -78,7 +78,7 @@ void Sprite::movey(int delta, const int Screen_height)
 	// }
 }
 
-void Sprite::movex(int delta, const int Screen_width)
+void Sprite::movex(int delta)
 {
 	currX += delta;
 	mColliders.x = currX;
