@@ -61,6 +61,7 @@ private:
 namespace std
 {
 
+template <>
 struct hash<MapPathNode>
 {
 	using argument_type = MapPathNode;
