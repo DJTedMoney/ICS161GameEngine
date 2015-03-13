@@ -16,6 +16,15 @@
     <Filter Include="Source Files\tmx">
       <UniqueIdentifier>{4457c871-3e99-4f5e-862f-44d2e5b86d4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\boost">
+      <UniqueIdentifier>{befd3c5a-dbd5-463c-b048-cc9dfbee9d5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\boost\filesystem">
+      <UniqueIdentifier>{2538dc9c-1fc4-4ab7-ae14-969183b4ea32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\boost\system">
+      <UniqueIdentifier>{dda4c7a8-ee6b-4939-ab1a-4ccaaa5abd05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEvent.cpp">
@@ -72,6 +81,33 @@
     <ClCompile Include="libtmx-0.3.0\src\lib\Parser.cc">
       <Filter>Source Files\tmx</Filter>
     </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\codecvt_error_category.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\operations.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\path.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\path_traits.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\portability.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\unique_path.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\utf8_codecvt_facet.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\filesystem\src\windows_file_codecvt.cpp">
+      <Filter>Source Files\boost\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="boost_1_57_0\libs\system\src\error_code.cpp">
+      <Filter>Source Files\boost\system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SoundHandler.h">
@@ -127,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="boost_1_57_0\libs\filesystem\src\windows_file_codecvt.hpp">
+      <Filter>Source Files\boost\filesystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
