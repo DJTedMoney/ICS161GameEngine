@@ -177,7 +177,7 @@ int main(int, char**)
 					{
 						int newPathFindGoalX = pathFindGoalX;
 						int newPathFindGoalY = pathFindGoalY - 1;
-						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) && !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()) {
+						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) /*&& !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()*/) {
 							pathFindGoalX = newPathFindGoalX;
 							pathFindGoalY = newPathFindGoalY;
 						}
@@ -186,7 +186,7 @@ int main(int, char**)
 					{
 						int newPathFindGoalX = pathFindGoalX - 1;
 						int newPathFindGoalY = pathFindGoalY;
-						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) && !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()) {
+						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) /*&& !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()*/) {
 							pathFindGoalX = newPathFindGoalX;
 							pathFindGoalY = newPathFindGoalY;
 						}
@@ -195,7 +195,7 @@ int main(int, char**)
 					{
 						int newPathFindGoalX = pathFindGoalX;
 						int newPathFindGoalY = pathFindGoalY + 1;
-						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) && !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()) {
+						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) /*&& !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()*/) {
 							pathFindGoalX = newPathFindGoalX;
 							pathFindGoalY = newPathFindGoalY;
 						}
@@ -204,7 +204,7 @@ int main(int, char**)
 					{
 						int newPathFindGoalX = pathFindGoalX + 1;
 						int newPathFindGoalY = pathFindGoalY;
-						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) && !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()) {
+						if (map.isInMap(newPathFindGoalX, newPathFindGoalY) /*&& !map.getCell(newPathFindGoalX, newPathFindGoalY).isWall()*/) {
 							pathFindGoalX = newPathFindGoalX;
 							pathFindGoalY = newPathFindGoalY;
 						}
@@ -230,12 +230,21 @@ int main(int, char**)
 			{
 				std::cout << "none";
 			}
-			for (auto& node : path.get())
+			else
 			{
-				std::cout << node << " -> ";
-				zealot->setPos(node.get_x() * map.getTileWidth(), node.get_y() * map.getTileHeight());
-				zealot->show(0);
+				for (auto& node : path.get())
+				{
+					if (node.get_x() != pathFindGoalX || node.get_y() != pathFindGoalY)
+					{
+						std::cout << node << " -> ";
+						zealot->setPos(node.get_x() * map.getTileWidth(), node.get_y() * map.getTileHeight());
+						zealot->show(1);
+					}
+				}
 			}
+			mainChar->setPos(pathFindGoalX * map.getTileWidth() - 16, pathFindGoalY * map.getTileHeight() - 16);
+			mainChar->show(0);
+
 			std::cout << std::endl;
 			SDL_RenderPresent(renderer);
 
