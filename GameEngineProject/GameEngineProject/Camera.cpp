@@ -14,25 +14,25 @@ Camera::~Camera()
 
 void Camera::listenForEvent(SDL_Event e)
 {
-	if (e.key.keysym.sym == SDLK_RIGHT)
+	if (e.key.keysym.sym == SDLK_1)
 	{
-		moveCameraRight();
+		
 	}
-	else if (e.key.keysym.sym == SDLK_LEFT)
+	else if (e.key.keysym.sym == SDLK_2)
 	{
-		moveCameraLeft();
+
 	}
-	else if (e.key.keysym.sym == SDLK_UP)
+	else if (e.key.keysym.sym == SDLK_3)
 	{
-		moveCameraUp();
+		
 	}
-	else if (e.key.keysym.sym == SDLK_DOWN)
+	else if (e.key.keysym.sym == SDLK_4)
 	{
-		moveCameraDown();
+		
 	}
-	else if (e.key.keysym.sym == SDLK_m)
+	else if (e.key.keysym.sym == SDLK_5)
 	{
-		toggleMode();
+		
 	}
 }
 

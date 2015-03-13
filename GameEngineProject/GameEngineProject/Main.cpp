@@ -137,16 +137,12 @@ int main(int, char**)
 
 	
 	// --------- ACTOR HANDLER --------- //
-	ActorHandler actorhandler();
-	actorhandler.addActor(mainChar, mainChar->getX(), mainChar->getY(), "player", true);
-	actorhandler.addActor(zealot, zealot->getX(), zealot->getY(), "zealot", true);
-	actorhandler.addActor(zerling, zerling->getX(), zerling->getY(), "zerling", true);
-	actorhandler.getActor("player").addAttribute("health","10");
-	std::cout << actorhandler.getActor("player").getAttribute("health"); << std::endl;
+
 
 
 	std::string playerDirection = "up";
 	std::string spriteDirection = "up";
+
 	SDL_Event e;
 	bool quit = false;
 	while (!quit){
@@ -160,27 +156,27 @@ int main(int, char**)
 			if (e.type == SDL_KEYDOWN){
 				if (e.key.keysym.sym == SDLK_RIGHT)
 				{
-					// engine.mainCamera.moveCameraRight();
-					actorhandler.getActor("player").movex(5);
-					playerDirection = "right";
+					engine.distributeSDLEvent(e);
 				}
 				else if (e.key.keysym.sym == SDLK_LEFT)
 				{
-					// engine.mainCamera.moveCameraLeft();
-					actorhandler.getActor("player").movex(-5);
-					playerDirection = "left";
+					engine.distributeSDLEvent(e);
 				}
 				else if (e.key.keysym.sym == SDLK_UP)
 				{
-					// engine.mainCamera.moveCameraUp();
-					actorhandler.getActor("player").movey(-5);
-					playerDirection = "up";
+					engine.distributeSDLEvent(e);
 				}
 				else if (e.key.keysym.sym == SDLK_DOWN)
 				{
-					// engine.mainCamera.moveCameraDown();
-					actorhandler.getActor("player").movey(5);
-					playerDirection = "down";
+					engine.distributeSDLEvent(e);
+				}
+				else if (e.key.keysym.sym == SDLK_m)
+				{
+					engine.distributeSDLEvent(e);
+				}
+				else if (e.key.keysym.sym == SDLK_t)
+				{
+					engine.distributeSDLEvent(e);
 				}
 			}
 

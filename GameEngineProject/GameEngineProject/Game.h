@@ -3,7 +3,7 @@
 #include "Camera.h"
 #include "GameEvent.h"
 #include "SaveHandler.h"
-//#include "SoundHandler.h"
+#include "SoundHandler.h"
 #include "GameEventHandler.h"
 
 class Game
@@ -21,6 +21,7 @@ public:
 	GameEventHandler events;
 	bool gameIsRunning;
 	Camera mainCamera;
+	SoundHandler soundPlayer;
 	
 private:
 

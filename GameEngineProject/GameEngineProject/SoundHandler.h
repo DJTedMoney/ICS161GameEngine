@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "SDL_mixer.h"
+#include <SDL.h>
 #include <map>
 #include <vector>
 
@@ -19,6 +20,7 @@ public:
 	void resumeSound();
 	void stopAllSound();
 	void freeMusic();
+	void listenForEvent(SDL_Event);
 	const std::string MUSIC = "MUSIC";
 	const std::string SFX = "SFX";
 	
