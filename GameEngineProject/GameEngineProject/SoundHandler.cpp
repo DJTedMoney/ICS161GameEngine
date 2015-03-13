@@ -104,15 +104,18 @@ void SoundHandler::loadSound(std::string fileName, std::string type)
 
 void SoundHandler::playSound(std::string toPlay, std::string type)
 {
+	if (Mix_PlayingMusic() == 0)
+	{
+		if (type == "SFX")
+		{
+			Mix_PlayChannel(-1, sfxList[toPlay], 0);
+		}
+		else if (type == "MUSIC")
+		{
+			Mix_PlayMusic(musicList[toPlay], -1);
+		}
+	}
 
-	if (type == "SFX")
-	{
-		Mix_PlayChannel(-1, sfxList[toPlay], 0);
-	}
-	else if (type == "MUSIC")
-	{
-		Mix_PlayMusic(musicList[toPlay], -1);
-	}
 	
 
 }
