@@ -226,6 +226,8 @@ int main(int, char**)
 			map.draw(0, 0);
 			auto path = pathFinder.get_optimal_path(MapPathNode{ &map, pathFindGoalX, pathFindGoalY });
 			std::cout << "path: ";
+			zealot->setPos(pathFindStartX * map.getTileWidth(), pathFindStartY * map.getTileHeight());
+			zealot->show(1);
 			if (path == boost::none)
 			{
 				std::cout << "none";
