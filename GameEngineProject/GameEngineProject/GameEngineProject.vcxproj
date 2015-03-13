@@ -102,7 +102,7 @@
     <ClCompile Include="libtmx-0.3.0\src\lib\Component.cc" />
     <ClCompile Include="libtmx-0.3.0\src\lib\Layers.cc" />
     <ClCompile Include="libtmx-0.3.0\src\lib\LayerVisitor.cc" />
-    <ClCompile Include="libtmx-0.3.0\src\lib\Map.cc" />
+    <ClCompile Include="libtmx-0.3.0\src\lib\TmxMap.cc" />
     <ClCompile Include="libtmx-0.3.0\src\lib\Object.cc" />
     <ClCompile Include="libtmx-0.3.0\src\lib\Parser.cc" />
     <ClCompile Include="libtmx-0.3.0\src\lib\TileSet.cc" />
@@ -111,6 +111,7 @@
     <ClCompile Include="SoundHandler.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="tinyxml2-2.2.0\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />

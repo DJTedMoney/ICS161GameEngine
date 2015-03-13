@@ -25,6 +25,9 @@
     <Filter Include="Source Files\boost\system">
       <UniqueIdentifier>{dda4c7a8-ee6b-4939-ab1a-4ccaaa5abd05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\tinyxml2">
+      <UniqueIdentifier>{e560f47e-ae37-43a4-8538-127ecb888ef7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEvent.cpp">
@@ -72,9 +75,6 @@
     <ClCompile Include="libtmx-0.3.0\src\lib\LayerVisitor.cc">
       <Filter>Source Files\tmx</Filter>
     </ClCompile>
-    <ClCompile Include="libtmx-0.3.0\src\lib\Map.cc">
-      <Filter>Source Files\tmx</Filter>
-    </ClCompile>
     <ClCompile Include="libtmx-0.3.0\src\lib\Object.cc">
       <Filter>Source Files\tmx</Filter>
     </ClCompile>
@@ -107,6 +107,12 @@
     </ClCompile>
     <ClCompile Include="boost_1_57_0\libs\system\src\error_code.cpp">
       <Filter>Source Files\boost\system</Filter>
+    </ClCompile>
+    <ClCompile Include="libtmx-0.3.0\src\lib\TmxMap.cc">
+      <Filter>Source Files\tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2-2.2.0\tinyxml2.cpp">
+      <Filter>Source Files\tinyxml2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
